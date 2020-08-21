@@ -1,4 +1,4 @@
-package com.verbitsky.task1.utils.filereader;
+package com.verbitsky.task1.reader;
 
 import java.io.File;
 

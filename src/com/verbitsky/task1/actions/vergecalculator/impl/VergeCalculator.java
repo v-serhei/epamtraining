@@ -1,13 +1,12 @@
-package com.verbitsky.task1.actors.vergecalculator;
+package com.verbitsky.task1.actions.vergecalculator.impl;
 
+import com.verbitsky.task1.actions.vergecalculator.VergeCalculation;
 import com.verbitsky.task1.entity.point.AreaPoint;
-
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
 
 public class VergeCalculator implements VergeCalculation {
-
     private static final double ROUND_FACTOR = 100.0;
 
     @Override
@@ -16,7 +15,6 @@ public class VergeCalculator implements VergeCalculation {
         double subY = b.getY() - a.getY();
         double subZ = b.getZ() - a.getZ();
         double sumOfPow = pow(subX, 2) + pow(subY, 2) + pow(subZ, 2);
-
         //returns rounded result with two digits of rounding accuracy
         return round(sqrt(sumOfPow) * ROUND_FACTOR) / ROUND_FACTOR;
     }

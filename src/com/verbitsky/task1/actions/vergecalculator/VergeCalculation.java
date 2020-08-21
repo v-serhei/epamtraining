@@ -1,4 +1,4 @@
-package com.verbitsky.task1.actors.vergecalculator;
+package com.verbitsky.task1.actions.vergecalculator;
 
 import com.verbitsky.task1.entity.point.AreaPoint;
 

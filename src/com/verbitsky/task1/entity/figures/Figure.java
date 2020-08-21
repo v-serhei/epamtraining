@@ -3,7 +3,7 @@ package com.verbitsky.task1.entity.figures;
 public abstract class Figure {
     private int id;
 
-    public int getId() {
+    public int getTetrahedronId() {
         return id;
     }
 

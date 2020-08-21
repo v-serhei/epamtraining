@@ -1,4 +1,4 @@
-package com.verbitsky.task1.utils.filereader;
+package com.verbitsky.task1.reader;
 
 import com.verbitsky.task1.exceptions.FigureException;
 
@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class ParametersForCreationReader {
+public class Datareader {
     public Stream<String> readParametersFromFile(String filePath) throws FigureException {
         File file = new File(filePath);
         Stream<String> stringStream = null;
@@ -17,6 +17,7 @@ public class ParametersForCreationReader {
             try {
                 stringStream = Files.lines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
             } catch (IOException e) {
+                //todo переделать
                 e.printStackTrace();
             }
         }else {

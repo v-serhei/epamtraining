@@ -1,6 +1,6 @@
 package com.verbitsky.task1.entity.verge;
 
-import com.verbitsky.task1.actors.vergecalculator.VergeCalculator;
+import com.verbitsky.task1.actions.vergecalculator.impl.VergeCalculator;
 import com.verbitsky.task1.entity.point.AreaPoint;
 
 public class Verge {

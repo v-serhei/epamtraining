@@ -1,15 +1,11 @@
 package com.verbitsky.task1;
 
-import com.verbitsky.task1.exceptions.FigureException;
-import com.verbitsky.task1.utils.filereader.FilePaths;
-import com.verbitsky.task1.utils.filereader.ParametersForCreationReader;
-
-import java.util.stream.Stream;
+import com.verbitsky.task1.generator.FigureIdGenerator;
 
 public class DeleteThis {
     public static void main(String[] args) {
-
-        ParametersForCreationReader reader = new ParametersForCreationReader();
+/*
+        Datareader reader = new Datareader();
         try {
             Stream<String> stream = reader.readParametersFromFile(FilePaths.FILE_PATH_FOR_TETRAHEDRON_CREATE);
             stream
@@ -19,6 +15,12 @@ public class DeleteThis {
         } catch (FigureException e) {
             e.printStackTrace();
         }
+*/
 
+
+        for (int i = 0; i < 30; i++) {
+            System.out.println(FigureIdGenerator.generateId());
+
+        }
     }
 }
