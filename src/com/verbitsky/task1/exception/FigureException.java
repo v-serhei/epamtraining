@@ -1,4 +1,4 @@
-package com.verbitsky.task1.exceptions;
+package com.verbitsky.task1.exception;
 
 public class FigureException extends Exception {
     public FigureException() {

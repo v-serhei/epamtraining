@@ -1,4 +1,4 @@
-package com.verbitsky.task1.actions.vergecalculator;
+package com.verbitsky.task1.action.vergecalculator;
 
 //import static org.testng.Assert.*;
 

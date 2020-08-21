@@ -1,11 +1,11 @@
-package com.verbitsky.task1.actions.figurecalculator.impl;
+package com.verbitsky.task1.action.figurecalculator.impl;
 
-import com.verbitsky.task1.actions.figurecalculator.FigureCalculation;
+import com.verbitsky.task1.action.figurecalculator.FigureCalculation;
 import com.verbitsky.task1.entity.point.AreaPoint;
-import com.verbitsky.task1.entity.figures.Figure;
-import com.verbitsky.task1.entity.figures.impl.RightTetrahedron;
+import com.verbitsky.task1.entity.figure.Figure;
+import com.verbitsky.task1.entity.figure.impl.RightTetrahedron;
 import com.verbitsky.task1.entity.verge.Verge;
-import com.verbitsky.task1.validators.figuretypevalidator.impl.TetrahedronTypeValidator;
+import com.verbitsky.task1.validator.figuretypevalidator.impl.TetrahedronTypeValidator;
 
 import static java.lang.Math.*;
 

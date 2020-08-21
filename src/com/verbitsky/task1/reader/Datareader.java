@@ -1,6 +1,6 @@
 package com.verbitsky.task1.reader;
 
-import com.verbitsky.task1.exceptions.FigureException;
+import com.verbitsky.task1.exception.FigureException;
 
 import java.io.File;
 import java.io.IOException;

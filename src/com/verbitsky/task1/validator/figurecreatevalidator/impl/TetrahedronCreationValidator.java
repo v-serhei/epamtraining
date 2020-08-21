@@ -1,8 +1,8 @@
-package com.verbitsky.task1.validators.figurecreatevalidator.impl;
+package com.verbitsky.task1.validator.figurecreatevalidator.impl;
 
 import com.verbitsky.task1.entity.point.AreaPoint;
 import com.verbitsky.task1.entity.verge.Verge;
-import com.verbitsky.task1.validators.figurecreatevalidator.FigureCreationValidator;
+import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
 
 public class TetrahedronCreationValidator implements FigureCreationValidator {
     @Override

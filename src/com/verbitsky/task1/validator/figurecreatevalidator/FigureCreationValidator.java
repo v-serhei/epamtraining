@@ -1,4 +1,4 @@
-package com.verbitsky.task1.validators.figurecreatevalidator;
+package com.verbitsky.task1.validator.figurecreatevalidator;
 
 import com.verbitsky.task1.entity.point.AreaPoint;
 

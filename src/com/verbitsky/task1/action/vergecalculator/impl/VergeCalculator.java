@@ -1,6 +1,6 @@
-package com.verbitsky.task1.actions.vergecalculator.impl;
+package com.verbitsky.task1.action.vergecalculator.impl;
 
-import com.verbitsky.task1.actions.vergecalculator.VergeCalculation;
+import com.verbitsky.task1.action.vergecalculator.VergeCalculation;
 import com.verbitsky.task1.entity.point.AreaPoint;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;

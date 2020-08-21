@@ -1,6 +1,6 @@
-package com.verbitsky.task1.actions.figurecalculator;
+package com.verbitsky.task1.action.figurecalculator;
 
-import com.verbitsky.task1.entity.figures.Figure;
+import com.verbitsky.task1.entity.figure.Figure;
 
 public interface FigureCalculation {
     double calculateSquare (Figure figure);
