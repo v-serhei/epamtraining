@@ -37,30 +37,26 @@ public class TetrahedronCreator implements FigureCreator {
         return tetrahedron;
     }
 
-    public List<Figure> createFiguresFromFile(String path) {
-        List<String> lines = dataFileReader.readDataFromFile(path);
-        //int counter = 0;
-        List<Figure> figures = new ArrayList<>();
-        for (String line : lines) {
-            Figure figure = createFigure(lineParser.parseAreaPointsFromLine(line, dataValidator));
-            if (figure != null) {
-                figures.add(figure);
-            } else {
-                //todo log строка файла № + counter содержит некорректные данные для создания фигуры class.forname
-
-
-
-            }
-        }
-
-        return figures;
-    }
-
-
     public Figure createFigure(AreaPoint... pointList) {
         List <AreaPoint> areaPointList = Arrays.asList(pointList);
         Tetrahedron tetrahedron = (Tetrahedron) createFigure(areaPointList);
         return tetrahedron;
     }
+
+    public List<Figure> createFiguresFromFile(String path) {
+        List<String> lines = dataFileReader.readDataFromFile(path);
+        List<Figure> figures = new ArrayList<>();
+        for (String line : lines) {
+            List <AreaPoint> pointList = lineParser.parseAreaPointsFromLine(line, dataValidator);
+            Figure figure = createFigure(pointList);
+            if (figure != null) {
+                figures.add(figure);
+            } else {
+                //todo log строка файла № + counter содержит некорректные данные для создания фигуры class.forname
+            }
+        }
+        return figures;
+    }
+
 
 }

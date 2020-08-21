@@ -12,7 +12,6 @@ public class TetrahedronDataValidator implements FigureDataValidator {
         boolean result = line.matches(COORDINATE_REGEX);
         if (!result) {
             //todo write log
-
         }
         return result;
     }

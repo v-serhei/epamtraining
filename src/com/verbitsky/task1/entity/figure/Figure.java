@@ -12,4 +12,9 @@ public abstract class Figure {
     public long getFigureId() {
         return figureId;
     }
+
+    @Override
+    public String toString() {
+        return "BaseFigure: figureId = "+ figureId;
+    }
 }
