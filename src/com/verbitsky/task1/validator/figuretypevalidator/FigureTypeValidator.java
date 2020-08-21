@@ -1,5 +1,5 @@
 package com.verbitsky.task1.validator.figuretypevalidator;
 
-public interface FigureTypeValidation {
+public interface FigureTypeValidator {
     boolean isObjectFigure(Object o);
 }

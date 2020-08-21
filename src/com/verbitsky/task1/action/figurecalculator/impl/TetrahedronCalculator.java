@@ -1,23 +1,23 @@
 package com.verbitsky.task1.action.figurecalculator.impl;
 
-import com.verbitsky.task1.action.figurecalculator.FigureCalculation;
+import com.verbitsky.task1.action.figurecalculator.FigureCalculator;
 import com.verbitsky.task1.entity.point.AreaPoint;
 import com.verbitsky.task1.entity.figure.Figure;
-import com.verbitsky.task1.entity.figure.impl.RightTetrahedron;
+import com.verbitsky.task1.entity.figure.impl.Tetrahedron;
 import com.verbitsky.task1.entity.verge.Verge;
 import com.verbitsky.task1.validator.figuretypevalidator.impl.TetrahedronTypeValidator;
 
 import static java.lang.Math.*;
 
-public class TetrahedronCalculator implements FigureCalculation {
+public class TetrahedronCalculator implements FigureCalculator {
     private static final double ROUND_FACTOR = 100.0;
     private TetrahedronTypeValidator tetrahedronTypeValidator = new TetrahedronTypeValidator();
 
     @Override
     public double calculateSquare(Figure figure) {
         if (tetrahedronTypeValidator.isObjectTetrahedron(figure)) {
-            RightTetrahedron rightTetrahedron = (RightTetrahedron) figure;
-            Verge verge = rightTetrahedron.getVerge();
+            Tetrahedron tetrahedron = (Tetrahedron) figure;
+            Verge verge = tetrahedron.getVerge();
             double res = pow(verge.getVergeSize(), 2) * sqrt(3);
             return roundResult(res);
         }
@@ -27,8 +27,8 @@ public class TetrahedronCalculator implements FigureCalculation {
     @Override
     public double calculateVolume(Figure figure) {
         if (tetrahedronTypeValidator.isObjectTetrahedron(figure)) {
-            RightTetrahedron rightTetrahedron = (RightTetrahedron) figure;
-            Verge verge = rightTetrahedron.getVerge();
+            Tetrahedron tetrahedron = (Tetrahedron) figure;
+            Verge verge = tetrahedron.getVerge();
             double res = (pow(verge.getVergeSize(), 3) * sqrt(2)) / 12;
             return roundResult(res);
         }
@@ -38,16 +38,16 @@ public class TetrahedronCalculator implements FigureCalculation {
     @Override
     public double calculateVolumeRatio(Figure figure, double subspaceHeight) {
         if (tetrahedronTypeValidator.isObjectTetrahedron(figure)) {
-            RightTetrahedron rightTetrahedron = (RightTetrahedron) figure;
-            AreaPoint buf = rightTetrahedron.getPointA();
+            Tetrahedron tetrahedron = (Tetrahedron) figure;
+            AreaPoint buf = tetrahedron.getPointA();
             AreaPoint reducedAPoint = new AreaPoint(buf.getX(), subspaceHeight, buf.getZ());
-            buf = rightTetrahedron.getPointB();
+            buf = tetrahedron.getPointB();
             AreaPoint reducedBPoint = new AreaPoint(buf.getX(), subspaceHeight, buf.getZ());
-            buf = rightTetrahedron.getPointC();
+            buf = tetrahedron.getPointC();
             AreaPoint reducedCPoint = new AreaPoint(buf.getX(), subspaceHeight, buf.getZ());
-            double fullTetrahedronVolume = calculateVolume(rightTetrahedron);
+            double fullTetrahedronVolume = calculateVolume(tetrahedron);
             double reducedTetrahedronVolume = calculateVolume(
-                    new RightTetrahedron(reducedAPoint, reducedBPoint, reducedCPoint, rightTetrahedron.getHeightPoint()));
+                    new Tetrahedron(reducedAPoint, reducedBPoint, reducedCPoint, tetrahedron.getHeightPoint()));
             double remainFigureVolume = fullTetrahedronVolume - reducedTetrahedronVolume;
             if (remainFigureVolume > reducedTetrahedronVolume) {
                 return roundResult(remainFigureVolume / reducedTetrahedronVolume);
@@ -61,10 +61,10 @@ public class TetrahedronCalculator implements FigureCalculation {
     @Override
     public boolean isFigureOnCoordinatesSquare(Figure figure) {
         if (tetrahedronTypeValidator.isObjectTetrahedron(figure)) {
-            RightTetrahedron rightTetrahedron = (RightTetrahedron) figure;
-            AreaPoint a = rightTetrahedron.getPointA();
-            AreaPoint b = rightTetrahedron.getPointB();
-            AreaPoint c = rightTetrahedron.getPointC();
+            Tetrahedron tetrahedron = (Tetrahedron) figure;
+            AreaPoint a = tetrahedron.getPointA();
+            AreaPoint b = tetrahedron.getPointB();
+            AreaPoint c = tetrahedron.getPointC();
 
             if (a.getX() == 0 && b.getX() == 0 && c.getX() == 0) {
                 return true;

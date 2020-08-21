@@ -1,15 +1,12 @@
 package com.verbitsky.task1.entity.figure.impl;
 
 import com.verbitsky.task1.entity.figure.Figure;
-import com.verbitsky.task1.entity.verge.Verge;
 import com.verbitsky.task1.entity.point.AreaPoint;
+import com.verbitsky.task1.entity.verge.Verge;
 
 import java.util.Objects;
 
-public class RightTetrahedron extends Figure {
-    private static int tetrahedronCount = 1;
-    private int tetrahedronId;
-
+public class Tetrahedron extends Figure {
 
     private AreaPoint pointA;
     private AreaPoint pointB;
@@ -17,18 +14,13 @@ public class RightTetrahedron extends Figure {
     private AreaPoint heightPoint;
     private Verge verge;
 
-    public RightTetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint heightPoint) {
+    public Tetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint heightPoint) {
+        setFigureId();
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
         this.heightPoint = heightPoint;
         verge = new Verge(pointA, pointB);
-        this.setId(tetrahedronCount);
-        tetrahedronCount++;
-    }
-
-    public int getTetrahedronId() {
-        return tetrahedronId;
     }
 
     public AreaPoint getPointA() {
@@ -54,9 +46,9 @@ public class RightTetrahedron extends Figure {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof RightTetrahedron)) return false;
-        RightTetrahedron that = (RightTetrahedron) o;
-        return tetrahedronId == that.tetrahedronId &&
+        if (!(o instanceof Tetrahedron)) return false;
+        Tetrahedron that = (Tetrahedron) o;
+        return this.getFigureId() == that.getFigureId() &&
                 Objects.equals(pointA, that.pointA) &&
                 Objects.equals(pointB, that.pointB) &&
                 Objects.equals(pointC, that.pointC) &&
@@ -68,8 +60,7 @@ public class RightTetrahedron extends Figure {
         return getPointA().hashCode()
                 + getPointB().hashCode()
                 + getPointC().hashCode()
-                + getHeightPoint().hashCode()
-                + getTetrahedronId();
+                + getHeightPoint().hashCode();
     }
     //todo ToString
 }

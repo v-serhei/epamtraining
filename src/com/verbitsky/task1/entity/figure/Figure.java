@@ -1,13 +1,15 @@
 package com.verbitsky.task1.entity.figure;
 
-public abstract class Figure {
-    private int id;
+import com.verbitsky.task1.generator.FigureIdGenerator;
 
-    public int getTetrahedronId() {
-        return id;
+public abstract class Figure {
+    private long figureId;
+
+    public void setFigureId() {
+        this.figureId = FigureIdGenerator.generateId();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public long getFigureId() {
+        return figureId;
     }
 }

@@ -1,12 +1,11 @@
 package com.verbitsky.task1.action.vergecalculator.impl;
 
-import com.verbitsky.task1.action.vergecalculator.VergeCalculation;
 import com.verbitsky.task1.entity.point.AreaPoint;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
 
-public class VergeCalculator implements VergeCalculation {
+public class VergeCalculator implements com.verbitsky.task1.action.vergecalculator.VergeCalculator {
     private static final double ROUND_FACTOR = 100.0;
 
     @Override
