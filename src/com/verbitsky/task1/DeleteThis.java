@@ -1,11 +1,20 @@
 package com.verbitsky.task1;
 
-import com.verbitsky.task1.entity.point.AreaPoint;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
 
 public class DeleteThis {
     public static void main(String[] args) {
-        AreaPoint point = new AreaPoint(1,2,3);
-        System.out.println(point);
+        File f = new File("logs");
+        if (f.exists())
+        {
+            Logger logger = LogManager.getLogger();
+            logger.log(Level.INFO, "hello");
+        }
+
 
       /* String [] words = new String[4];
         words[0] = "0";
