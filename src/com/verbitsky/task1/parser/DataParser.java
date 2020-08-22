@@ -7,17 +7,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataParser {
-    private static final String COORDINATE_ITEM_SEPARATOR = ";;";
+    /*
+        GROUP_COORDINATES_SEPARATOR
+        separate points coordinate in line, for example: (first group)1.0 1.0 1.0 ; (second group) 2.0 2.0 2.0
+     */
+    private static final String GROUP_COORDINATES_SEPARATOR = ";";
+    private static final String DEFAULT_COORDINATE_SEPARATOR = " ";
+    private static final String MULTIPLE_SPACES = "\\s+";
 
     public List<AreaPoint> parseAreaPointsFromLine(String line, FigureDataValidator figureDataValidator) {
         boolean correctData = figureDataValidator.validateData(line);
         List<AreaPoint> points = new ArrayList<>();
         if (correctData) {
-            String[] stringCoordinates = line.split(COORDINATE_ITEM_SEPARATOR);
-            double[] numericCoordinates = convertStringArrayToDouble(stringCoordinates);
+            double[] numericCoordinates = getCoordinatesArrayFromLine(line);
             points = createPointsFromCoordinates(numericCoordinates);
         }
         return points;
+    }
+
+    private double[] getCoordinatesArrayFromLine(String line) {
+        String buf = line.replaceAll(GROUP_COORDINATES_SEPARATOR, DEFAULT_COORDINATE_SEPARATOR);
+        buf = clearMultipleSpaces(buf);
+        String[] strCoordinates = buf.split(DEFAULT_COORDINATE_SEPARATOR);
+        double[] coordinatesArray = convertStringArrayToDouble(strCoordinates);
+        return coordinatesArray;
     }
 
     private double[] convertStringArrayToDouble(String[] strings) {
@@ -35,4 +48,10 @@ public class DataParser {
         }
         return result;
     }
+
+    private String clearMultipleSpaces(String line) {
+        String result = line.replaceAll(MULTIPLE_SPACES, DEFAULT_COORDINATE_SEPARATOR);
+        return result.trim();
+    }
+
 }
