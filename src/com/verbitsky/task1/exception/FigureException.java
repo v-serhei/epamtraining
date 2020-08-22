@@ -2,7 +2,7 @@ package com.verbitsky.task1.exception;
 
 public class FigureException extends Exception {
     public FigureException() {
-        this("Unknown figure exception");
+        this("Figure exception");
     }
 
     public FigureException(String message) {
@@ -14,6 +14,6 @@ public class FigureException extends Exception {
     }
 
     public FigureException(Throwable cause) {
-        this("Unknown figure exception: " + cause);
+        this("Figure exception: " + cause);
     }
 }

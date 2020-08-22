@@ -1,13 +1,18 @@
 package com.verbitsky.task1;
 
+import com.verbitsky.task1.entity.point.AreaPoint;
+
 public class DeleteThis {
     public static void main(String[] args) {
+        AreaPoint point = new AreaPoint(1,2,3);
+        System.out.println(point);
+
       /* String [] words = new String[4];
         words[0] = "0";
         words[1] = "1";
         words[2] = "2";
         words[3] = "3";
-        test1(words);*/
+        test1(words);
 
         int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
@@ -17,7 +22,7 @@ public class DeleteThis {
             System.out.println("array i+2 = " + array[i + 2]);
 
         }
-
+*/
     }
 
     private static void test1(String... words) {

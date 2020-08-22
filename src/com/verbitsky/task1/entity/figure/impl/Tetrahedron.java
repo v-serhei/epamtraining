@@ -1,8 +1,9 @@
 package com.verbitsky.task1.entity.figure.impl;
 
+import com.verbitsky.task1.action.vergecalculator.VergeCalculator;
+import com.verbitsky.task1.action.vergecalculator.impl.VergeCalculatorImpl;
 import com.verbitsky.task1.entity.figure.Figure;
 import com.verbitsky.task1.entity.point.AreaPoint;
-import com.verbitsky.task1.entity.verge.Verge;
 
 import java.util.Objects;
 
@@ -11,16 +12,17 @@ public class Tetrahedron extends Figure {
     private AreaPoint pointA;
     private AreaPoint pointB;
     private AreaPoint pointC;
-    private AreaPoint heightPoint;
-    private Verge verge;
+    private AreaPoint topPoint;
+    private double vergeSize;
 
-    public Tetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint heightPoint) {
+    public Tetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint topPoint) {
         setFigureId();
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
-        this.heightPoint = heightPoint;
-        verge = new Verge(pointA, pointB);
+        this.topPoint = topPoint;
+        VergeCalculator vergeCalculator = new VergeCalculatorImpl();
+        vergeSize = vergeCalculator.calculateVergeSize(pointA, pointB);
     }
 
     public AreaPoint getPointA() {
@@ -35,12 +37,12 @@ public class Tetrahedron extends Figure {
         return pointC;
     }
 
-    public AreaPoint getHeightPoint() {
-        return heightPoint;
+    public AreaPoint getTopPoint() {
+        return topPoint;
     }
 
-    public Verge getVerge() {
-        return verge;
+    public double getVergeSize() {
+        return vergeSize;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class Tetrahedron extends Figure {
                 Objects.equals(pointA, that.pointA) &&
                 Objects.equals(pointB, that.pointB) &&
                 Objects.equals(pointC, that.pointC) &&
-                Objects.equals(heightPoint, that.heightPoint);
+                Objects.equals(topPoint, that.topPoint);
     }
 
     @Override
@@ -60,7 +62,27 @@ public class Tetrahedron extends Figure {
         return getPointA().hashCode()
                 + getPointB().hashCode()
                 + getPointC().hashCode()
-                + getHeightPoint().hashCode();
+                + getTopPoint().hashCode();
     }
-    //todo ToString
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb
+                .append("Tetrahedron: id=")
+                .append(getFigureId())
+                .append(" points (")
+                .append("A: ")
+                .append(pointA)
+                .append("B: ")
+                .append(pointB)
+                .append("C: ")
+                .append(pointA)
+                .append("Top: ")
+                .append(topPoint)
+                .append(")")
+                .append(" verge size=")
+                .append(vergeSize);
+        return sb.toString();
+    }
 }

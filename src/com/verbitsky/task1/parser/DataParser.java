@@ -19,13 +19,13 @@ public class DataParser {
         boolean correctData = figureDataValidator.validateData(line);
         List<AreaPoint> points = new ArrayList<>();
         if (correctData) {
-            double[] numericCoordinates = getCoordinatesArrayFromLine(line);
+            double[] numericCoordinates = getNumericCoordinatesFromLine(line);
             points = createPointsFromCoordinates(numericCoordinates);
         }
         return points;
     }
 
-    private double[] getCoordinatesArrayFromLine(String line) {
+    private double[] getNumericCoordinatesFromLine(String line) {
         String buf = line.replaceAll(GROUP_COORDINATES_SEPARATOR, DEFAULT_COORDINATE_SEPARATOR);
         buf = clearMultipleSpaces(buf);
         String[] strCoordinates = buf.split(DEFAULT_COORDINATE_SEPARATOR);
