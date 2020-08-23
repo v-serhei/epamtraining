@@ -18,8 +18,9 @@ public class VergeCalculatorImpl implements VergeCalculator {
         double subY = b.getYCoordinate() - a.getYCoordinate();
         double subZ = b.getZCoordinate() - a.getZCoordinate();
         double sumOfPow = pow(subX, 2) + pow(subY, 2) + pow(subZ, 2);
-        //returns rounded result with two digits of rounding accuracy
-        logger.log(Level.INFO, "Calculating tetrahedron volume: received object is not an instance of Tetrahedron");
-        return round(sqrt(sumOfPow) * ROUND_FACTOR) / ROUND_FACTOR;
+        //round result with two digits of rounding accuracy
+        double result = round(sqrt(sumOfPow) * ROUND_FACTOR) / ROUND_FACTOR;
+        logger.log(Level.INFO, "Calculate verge size: result = " + result);
+        return result;
     }
 }
