@@ -10,12 +10,16 @@ import com.verbitsky.task1.validator.datavalidator.FigureDataValidator;
 import com.verbitsky.task1.validator.datavalidator.impl.TetrahedronDataValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.impl.TetrahedronCreationValidator;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class TetrahedronCreator implements FigureCreator {
+    private static Logger logger = LogManager.getLogger();
     //read coordinates from txt file
     private static DataReader dataFileReader = new DataReader();
     //check the ability to create Tetrahedron
@@ -29,16 +33,14 @@ public class TetrahedronCreator implements FigureCreator {
     public Figure createFigure(List<AreaPoint> pointList) {
         Tetrahedron tetrahedron = null;
         if (creationValidator.validateFigureCreation(pointList)) {
-            //todo log this
             tetrahedron = new Tetrahedron(pointList.get(0), pointList.get(1), pointList.get(2), pointList.get(3));
-        } else {
-            //todo log this подумать надо ли тут элс
         }
+        logger.log(Level.INFO, "Created figure: " + tetrahedron);
         return tetrahedron;
     }
 
     public Figure createFigure(AreaPoint... pointList) {
-        List <AreaPoint> areaPointList = Arrays.asList(pointList);
+        List<AreaPoint> areaPointList = Arrays.asList(pointList);
         Tetrahedron tetrahedron = (Tetrahedron) createFigure(areaPointList);
         return tetrahedron;
     }
@@ -47,12 +49,11 @@ public class TetrahedronCreator implements FigureCreator {
         List<String> lines = dataFileReader.readDataFromFile(path);
         List<Figure> figures = new ArrayList<>();
         for (String line : lines) {
-            List <AreaPoint> pointList = lineParser.parseAreaPointsFromLine(line, dataValidator);
+            logger.log(Level.INFO, "Created figure from file: try to create figure from " + line);
+            List<AreaPoint> pointList = lineParser.parseAreaPointsFromLine(line, dataValidator);
             Figure figure = createFigure(pointList);
             if (figure != null) {
                 figures.add(figure);
-            } else {
-                //todo log строка файла № + counter содержит некорректные данные для создания фигуры class.forname
             }
         }
         return figures;
