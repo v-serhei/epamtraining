@@ -58,6 +58,4 @@ public class TetrahedronCreator implements FigureCreator {
         }
         return figures;
     }
-
-
 }

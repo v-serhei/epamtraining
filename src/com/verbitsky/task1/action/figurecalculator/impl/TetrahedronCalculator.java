@@ -27,7 +27,6 @@ public class TetrahedronCalculator implements FigureCalculator {
             logger.log(Level.INFO, "Calculate tetrahedron square: received object is not an instance of Tetrahedron");
         }
         return roundResult(result);
-
     }
 
     @Override
@@ -72,9 +71,7 @@ public class TetrahedronCalculator implements FigureCalculator {
 
     @Override
     public boolean isFigureOnCoordinatesPlane(Figure figure) {
-        boolean flag = false;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
-            flag = true;
             Tetrahedron tetrahedron = (Tetrahedron) figure;
             AreaPoint a = tetrahedron.getPointA();
             AreaPoint b = tetrahedron.getPointB();

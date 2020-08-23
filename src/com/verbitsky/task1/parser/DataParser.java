@@ -53,5 +53,4 @@ public class DataParser {
         String result = line.replaceAll(MULTIPLE_SPACES, DEFAULT_COORDINATE_SEPARATOR);
         return result.trim();
     }
-
 }
