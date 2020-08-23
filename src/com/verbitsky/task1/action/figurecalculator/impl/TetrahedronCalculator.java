@@ -18,24 +18,30 @@ public class TetrahedronCalculator implements FigureCalculator {
 
     @Override
     public double calculateSquare(Figure figure) {
+        double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
-            double res = pow(tetrahedron.getVergeSize(), 2) * sqrt(3);
-            logger.log(Level.INFO, "Calculating tetrahedron square: result = " + res);
-            return roundResult(res);
+            result = pow(tetrahedron.getVergeSize(), 2) * sqrt(3);
+            logger.log(Level.INFO, "Calculating tetrahedron square: result = " + roundResult(result));
+        } else {
+            logger.log(Level.INFO, "Calculating tetrahedron square: received object is not an instance of Tetrahedron");
         }
-        return 0;
+        return roundResult(result);
+
     }
 
     @Override
     public double calculateVolume(Figure figure) {
+        double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
-            double res = (pow(tetrahedron.getVergeSize(), 3) * sqrt(2)) / 12;
-            logger.log(Level.INFO, "Calculating tetrahedron volume: result = " + res);
-            return roundResult(res);
+            result = (pow(tetrahedron.getVergeSize(), 3) * sqrt(2)) / 12;
+            logger.log(Level.INFO, "Calculating tetrahedron volume: result = " + roundResult(result));
+
+        } else {
+            logger.log(Level.INFO, "Calculating tetrahedron volume: received object is not an instance of Tetrahedron");
         }
-        return 0;
+        return roundResult(result);
     }
 
     @Override
@@ -58,20 +64,24 @@ public class TetrahedronCalculator implements FigureCalculator {
             } else {
                 result = roundResult(reducedTetrahedronVolume / remainFigureVolume);
             }
+            logger.log(Level.INFO, "Calculating tetrahedrons ratio: result = " + result);
+        } else {
+            logger.log(Level.INFO, "Calculating tetrahedron ratio: received object is not an instance of Tetrahedron");
         }
-        logger.log(Level.INFO, "Calculating tetrahedrons ration: result = " + result);
         return result;
     }
 
     @Override
-    public boolean isFigureOnCoordinatesSquare(Figure figure) {
+    public boolean isFigureOnCoordinatesPlane(Figure figure) {
+        boolean flag = false;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
+            flag = true;
             Tetrahedron tetrahedron = (Tetrahedron) figure;
             AreaPoint a = tetrahedron.getPointA();
             AreaPoint b = tetrahedron.getPointB();
             AreaPoint c = tetrahedron.getPointC();
             if (a.getXCoordinate() == 0 && b.getXCoordinate() == 0 && c.getXCoordinate() == 0) {
-                logger.log(Level.INFO, "Tetrahedrons is on YZ-coordinates plane");
+                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons is on YZ-coordinates plane");
                 return true;
             }
             if (a.getYCoordinate() == 0 && b.getYCoordinate() == 0 && c.getYCoordinate() == 0) {
@@ -82,8 +92,10 @@ public class TetrahedronCalculator implements FigureCalculator {
                 logger.log(Level.INFO, "Tetrahedrons is on XY-coordinates plane");
                 return true;
             }
+        } else {
+            logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: received object is not an instance of Tetrahedron");
         }
-        logger.log(Level.INFO, "Tetrahedrons not located on any coordinate plane");
+        logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons not located on any coordinate plane");
         return false;
     }
 

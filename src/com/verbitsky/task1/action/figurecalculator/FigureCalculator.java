@@ -6,5 +6,5 @@ public interface FigureCalculator {
     double calculateSquare (Figure figure);
     double calculateVolume (Figure figure);
     double calculateVolumeRatio (Figure figure, double subspaceHeight);
-    boolean isFigureOnCoordinatesSquare (Figure figure);
+    boolean isFigureOnCoordinatesPlane(Figure figure);
 }

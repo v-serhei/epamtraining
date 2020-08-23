@@ -1,20 +1,12 @@
 package com.verbitsky.task1;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.File;
+import com.verbitsky.task1.entity.figure.impl.Tetrahedron;
 
 public class DeleteThis {
     public static void main(String[] args) {
-        File f = new File("logs");
-        if (f.exists())
-        {
-            Logger logger = LogManager.getLogger();
-            logger.log(Level.INFO, "hello");
-        }
 
+
+        System.out.println(Tetrahedron.class.getSimpleName());
 
       /* String [] words = new String[4];
         words[0] = "0";
