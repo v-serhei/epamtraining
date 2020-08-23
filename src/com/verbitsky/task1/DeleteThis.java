@@ -1,12 +1,9 @@
 package com.verbitsky.task1;
 
-import com.verbitsky.task1.entity.figure.impl.Tetrahedron;
-
 public class DeleteThis {
     public static void main(String[] args) {
 
 
-        System.out.println(Tetrahedron.class.getSimpleName());
 
       /* String [] words = new String[4];
         words[0] = "0";
