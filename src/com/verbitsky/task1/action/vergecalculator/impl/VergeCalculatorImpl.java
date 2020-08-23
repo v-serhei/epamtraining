@@ -2,6 +2,7 @@ package com.verbitsky.task1.action.vergecalculator.impl;
 
 import com.verbitsky.task1.action.vergecalculator.VergeCalculator;
 import com.verbitsky.task1.entity.point.AreaPoint;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,6 +19,7 @@ public class VergeCalculatorImpl implements VergeCalculator {
         double subZ = b.getZCoordinate() - a.getZCoordinate();
         double sumOfPow = pow(subX, 2) + pow(subY, 2) + pow(subZ, 2);
         //returns rounded result with two digits of rounding accuracy
+        logger.log(Level.INFO, "Calculating tetrahedron volume: received object is not an instance of Tetrahedron");
         return round(sqrt(sumOfPow) * ROUND_FACTOR) / ROUND_FACTOR;
     }
 }
