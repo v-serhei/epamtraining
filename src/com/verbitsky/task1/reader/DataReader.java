@@ -17,6 +17,7 @@ public class DataReader {
     private static Logger logger = LogManager.getLogger();
     public List<String> readDataFromFile(String filePath) {
         File file = new File(filePath);
+
         Stream<String> stringsStream;
         try {
             stringsStream = Files.lines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
@@ -28,4 +29,5 @@ public class DataReader {
         logger.log(Level.INFO, "Read data from file successfully completed");
         return dataList;
     }
+
 }

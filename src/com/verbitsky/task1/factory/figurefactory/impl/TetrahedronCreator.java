@@ -6,6 +6,8 @@ import com.verbitsky.task1.entity.point.AreaPoint;
 import com.verbitsky.task1.factory.figurefactory.FigureCreator;
 import com.verbitsky.task1.parser.DataParser;
 import com.verbitsky.task1.reader.DataReader;
+import com.verbitsky.task1.validator.datafilevalidator.DataFileValidator;
+import com.verbitsky.task1.validator.datafilevalidator.impl.DataFileValidatorImpl;
 import com.verbitsky.task1.validator.datavalidator.FigureDataValidator;
 import com.verbitsky.task1.validator.datavalidator.impl.TetrahedronDataValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
@@ -28,6 +30,8 @@ public class TetrahedronCreator implements FigureCreator {
     private static FigureDataValidator dataValidator = new TetrahedronDataValidator();
     //parse coordinates from strings
     private static DataParser lineParser = new DataParser();
+    //data file validator
+    private static DataFileValidator fileValidator = new DataFileValidatorImpl();
 
     @Override
     public Figure createFigure(List<AreaPoint> pointList) {
@@ -46,6 +50,11 @@ public class TetrahedronCreator implements FigureCreator {
     }
 
     public List<Figure> createFiguresFromFile(String path) {
+        boolean flag = false;
+        if (!fileValidator.validateDataFile(path)) {
+            logger.log(Level.ERROR, "Wrong data file, shutdown program");
+            throw new RuntimeException("TetrahedronCreator: wrong data file");
+        }
         List<String> lines = dataFileReader.readDataFromFile(path);
         List<Figure> figures = new ArrayList<>();
         for (String line : lines) {
