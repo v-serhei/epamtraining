@@ -57,14 +57,20 @@ public class TetrahedronCalculatorTest {
         AssertJUnit.assertEquals("Wrong calculation result", expected, actual, 0.0001);
     }
 
-    //stub
     @Test
-    public void testCalculateVolumeRatio() {
-        //double expected
+    public void testCalculateVolumeRatio() throws FigureException {
+        double expected = 1.8284;
+        double actual = figureCalculator.calculateVolumeRatio(tetrahedron, 2);
+        AssertJUnit.assertEquals("Wrong calculation result", expected, actual, 0.0001);
     }
-    //stub
-    @Test
-    public void testIsFigureOnCoordinatesPlane() {
 
+    @Test
+    public void testIsFigureOnCoordinatesPlane() throws FigureException {
+        AreaPoint pointA = new AreaPoint(0, 1, 1);
+        AreaPoint pointB = new AreaPoint(0, -1, 1);
+        AreaPoint pointC = new AreaPoint(0, 1, -1);
+        AreaPoint pointTop = new AreaPoint(2, -1, -1);
+        Figure figure = new Tetrahedron(pointA, pointB, pointC, pointTop);
+        AssertJUnit.assertTrue(figureCalculator.isFigureOnCoordinatesPlane(figure));
     }
 }

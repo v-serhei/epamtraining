@@ -79,21 +79,21 @@ public class TetrahedronCalculator implements FigureCalculator {
             AreaPoint b = tetrahedron.getPointB();
             AreaPoint c = tetrahedron.getPointC();
             if (a.getXCoordinate() == 0 && b.getXCoordinate() == 0 && c.getXCoordinate() == 0) {
-                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons is on YZ-coordinates plane");
+                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on YZ-coordinates plane");
                 return true;
             }
             if (a.getYCoordinate() == 0 && b.getYCoordinate() == 0 && c.getYCoordinate() == 0) {
-                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons is on XZ-coordinates plane");
+                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on XZ-coordinates plane");
                 return true;
             }
             if (a.getZCoordinate() == 0 && b.getZCoordinate() == 0 && c.getZCoordinate() == 0) {
-                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons is on XY-coordinates plane");
+                logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on XY-coordinates plane");
                 return true;
             }
         } else {
             logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: received object is not an instance of Tetrahedron");
         }
-        logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedrons not located on any coordinate plane");
+        logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron not located on any coordinate plane");
         return false;
     }
 }
