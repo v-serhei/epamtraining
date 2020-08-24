@@ -1,9 +1,27 @@
 package com.verbitsky.task1;
 
+import com.verbitsky.task1.exception.FigureException;
+import com.verbitsky.task1.validator.figuretypevalidator.FigureTypeValidator;
+import com.verbitsky.task1.validator.figuretypevalidator.impl.TetrahedronTypeValidator;
+
 public class DeleteThis {
     public static void main(String[] args) {
+        double rebro = 2 * Math.sqrt(2);
+        double s = Math.sqrt(3) * rebro * rebro;
+        double v = Math.sqrt(2)/12*rebro*rebro*rebro;
 
+        System.out.println("koren iz 3 = " + Math.sqrt(3));
+        System.out.println("rebro="+rebro);
+        System.out.println("rebro*rebro="+(rebro*rebro));
+        System.out.println("s="+s);
+        System.out.println("v="+v);
 
+        FigureTypeValidator validator = new TetrahedronTypeValidator();
+        try {
+            validator.isObjectFigure(null);
+        } catch (FigureException e) {
+            e.printStackTrace();
+        }
 
       /* String [] words = new String[4];
         words[0] = "0";

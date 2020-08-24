@@ -3,6 +3,7 @@ package com.verbitsky.task1.factory.figurefactory.impl;
 import com.verbitsky.task1.entity.figure.Figure;
 import com.verbitsky.task1.entity.figure.impl.Tetrahedron;
 import com.verbitsky.task1.entity.point.AreaPoint;
+import com.verbitsky.task1.exception.FigureException;
 import com.verbitsky.task1.factory.figurefactory.FigureCreator;
 import com.verbitsky.task1.parser.DataParser;
 import com.verbitsky.task1.reader.DataReader;
@@ -36,8 +37,12 @@ public class TetrahedronCreator implements FigureCreator {
     @Override
     public Figure createFigure(List<AreaPoint> pointList) {
         Tetrahedron tetrahedron = null;
-        if (creationValidator.validateFigureCreation(pointList)) {
-            tetrahedron = new Tetrahedron(pointList.get(0), pointList.get(1), pointList.get(2), pointList.get(3));
+        try {
+            if (creationValidator.validateFigureCreation(pointList)) {
+                tetrahedron = new Tetrahedron(pointList.get(0), pointList.get(1), pointList.get(2), pointList.get(3));
+            }
+        } catch (FigureException e) {
+            logger.log(Level.INFO, "Tetrahedron creator: received null object in createFigure method");
         }
         logger.log(Level.INFO, "Created figure: " + tetrahedron);
         return tetrahedron;

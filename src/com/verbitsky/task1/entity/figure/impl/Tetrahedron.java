@@ -4,11 +4,15 @@ import com.verbitsky.task1.action.vergecalculator.VergeCalculator;
 import com.verbitsky.task1.action.vergecalculator.impl.VergeCalculatorImpl;
 import com.verbitsky.task1.entity.figure.Figure;
 import com.verbitsky.task1.entity.point.AreaPoint;
+import com.verbitsky.task1.exception.FigureException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
 public class Tetrahedron extends Figure {
-
+    private static Logger logger = LogManager.getLogger();
     private AreaPoint pointA;
     private AreaPoint pointB;
     private AreaPoint pointC;
@@ -22,7 +26,12 @@ public class Tetrahedron extends Figure {
         this.pointC = pointC;
         this.topPoint = topPoint;
         VergeCalculator vergeCalculator = new VergeCalculatorImpl();
-        vergeSize = vergeCalculator.calculateVergeSize(pointA, pointB);
+        try {
+            vergeSize = vergeCalculator.calculateVergeSize(pointA, pointB);
+        } catch (FigureException e) {
+            logger.log(Level.INFO, "Tetrahedron constructor: can't calculate verge size, cause: null AreaPoints");
+            vergeSize = 0;
+        }
     }
 
     public AreaPoint getPointA() {
