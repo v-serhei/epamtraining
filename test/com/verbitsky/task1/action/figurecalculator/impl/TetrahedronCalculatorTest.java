@@ -57,11 +57,12 @@ public class TetrahedronCalculatorTest {
         AssertJUnit.assertEquals("Wrong calculation result", expected, actual, 0.0001);
     }
 
+    //stub
     @Test
     public void testCalculateVolumeRatio() {
         //double expected
     }
-
+    //stub
     @Test
     public void testIsFigureOnCoordinatesPlane() {
     }

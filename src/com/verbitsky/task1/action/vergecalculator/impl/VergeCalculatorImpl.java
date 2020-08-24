@@ -15,7 +15,7 @@ public class VergeCalculatorImpl implements VergeCalculator {
 
     @Override
     public double calculateVergeSize(AreaPoint a, AreaPoint b) throws FigureException {
-        if (a == null && b == null) {
+        if (a == null || b == null) {
             throw new FigureException("Method calculateVergeSize getting null object");
         }
         double subX = b.getXCoordinate() - a.getXCoordinate();
