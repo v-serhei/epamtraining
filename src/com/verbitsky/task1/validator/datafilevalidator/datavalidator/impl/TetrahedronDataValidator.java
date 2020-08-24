@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class TetrahedronDataValidator implements FigureDataValidator {
-    private static final String CORRECT_FILE_LINE_WITH_COORDINATES = "(\\s*((\\d+?\\.\\d{1,2})\\s*){3}\\s*?;){4}";
+    private static final String CORRECT_FILE_LINE_WITH_COORDINATES = "(\\s*((-?\\d+?\\.\\d{1,2})\\s*){3}\\s*?;){4}";
     private static Logger logger = LogManager.getLogger();
     @Override
     public boolean validateData(String line) {

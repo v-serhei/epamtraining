@@ -65,5 +65,6 @@ public class TetrahedronCalculatorTest {
     //stub
     @Test
     public void testIsFigureOnCoordinatesPlane() {
+
     }
 }
