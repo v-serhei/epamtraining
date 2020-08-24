@@ -1,4 +1,4 @@
-package com.verbitsky.task1.validator.datafilevalidator.filepathvalidator;
+package com.verbitsky.task1.validator.datafilevalidator.filevalidator;
 
 public interface DataFileValidator {
     boolean validateDataFilePath(String path);

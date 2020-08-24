@@ -6,8 +6,8 @@ import com.verbitsky.task1.entity.point.AreaPoint;
 import com.verbitsky.task1.factory.figurefactory.FigureCreator;
 import com.verbitsky.task1.parser.DataParser;
 import com.verbitsky.task1.reader.DataReader;
-import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.DataFileValidator;
-import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.impl.DataFileValidatorImpl;
+import com.verbitsky.task1.validator.datafilevalidator.filevalidator.DataFileValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filevalidator.impl.DataFileValidatorImpl;
 import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataValidator;
 import com.verbitsky.task1.validator.datafilevalidator.datavalidator.impl.TetrahedronDataValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
@@ -50,14 +50,6 @@ public class TetrahedronCreator implements FigureCreator {
     }
 
     public List<Figure> createFiguresFromFile(String path) {
-        if (!fileValidator.validateDataFilePath(path)) {
-            logger.log(Level.ERROR, ":TetrahedronCreator: wrong data file path, shutdown program");
-            throw new RuntimeException("TetrahedronCreator: wrong data file path");
-        }
-        if (!fileValidator.validateEmptyDataFile(path)) {
-            logger.log(Level.ERROR, "TetrahedronCreator: data file is empty, shutdown program");
-            throw new RuntimeException("TetrahedronCreator: wrong data file path");
-        }
         List<String> lines = dataFileReader.readDataFromFile(path);
         List<Figure> figures = new ArrayList<>();
         for (String line : lines) {

@@ -1,6 +1,6 @@
-package com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.impl;
+package com.verbitsky.task1.validator.datafilevalidator.filevalidator.impl;
 
-import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.DataFileValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filevalidator.DataFileValidator;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -30,12 +30,6 @@ public class DataFileValidatorImplTest {
         pathBuilder.append("fileforcreation");
         pathBuilder.append(File.separator);
         pathBuilder.append("figureparametres.txt");
-        System.out.println(pathBuilder.toString());
-        System.out.println(validator.validateDataFilePath(pathBuilder.toString()));
-        File f = new File(pathBuilder.toString());
-        if (f.exists()) {
-            System.out.println("YES");
-        }
         Assert.assertTrue(validator.validateDataFilePath(pathBuilder.toString()));
     }
 

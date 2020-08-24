@@ -1,5 +1,9 @@
 package com.verbitsky.task1.reader;
 
+import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataValidator;
+import com.verbitsky.task1.validator.datafilevalidator.datavalidator.impl.TetrahedronDataValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filevalidator.DataFileValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filevalidator.impl.DataFileValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,10 +18,20 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DataReader {
+    private static FigureDataValidator dataValidator = new TetrahedronDataValidator();
+    private static DataFileValidator fileValidator = new DataFileValidatorImpl ();
     private static Logger logger = LogManager.getLogger();
-    public List<String> readDataFromFile(String filePath) {
-        File file = new File(filePath);
 
+    public List<String> readDataFromFile(String filePath) {
+        if (!fileValidator.validateDataFilePath(filePath)) {
+            logger.log(Level.ERROR, "DataReader: wrong data file path, shutdown program");
+            throw new RuntimeException("DataReader: wrong data file path");
+        }
+        if (fileValidator.validateEmptyDataFile(filePath)) {
+            logger.log(Level.ERROR, "DataReader: wrong data file - empty file, shutdown program");
+            throw new RuntimeException("DataReader: wrong data file - empty file");
+        }
+        File file = new File(filePath);
         Stream<String> stringsStream;
         try {
             stringsStream = Files.lines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
