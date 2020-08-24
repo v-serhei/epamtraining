@@ -42,7 +42,7 @@ public class TetrahedronTypeValidatorTest {
         validator = null;
         nonTetrahedronObject = null;
     }
-
+    /*  Positive result tests */
     @Test
     public void testIsObjectFigurePositive() {
         boolean expected = true;
@@ -54,7 +54,7 @@ public class TetrahedronTypeValidatorTest {
         }
         AssertJUnit.assertEquals(expected, actual);
     }
-
+    /* Negative result tests: result = false or catch exception */
     @Test
     public void testIsObjectFigureNegative() {
         boolean expected = false;
