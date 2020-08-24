@@ -1,13 +1,13 @@
-package com.verbitsky.task1.validator.datafilevalidator.impl;
+package com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.impl;
 
-import com.verbitsky.task1.validator.datafilevalidator.DataFileValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.DataFilePathValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-public class DataFileValidatorImpl implements DataFileValidator {
+public class DataFilePathValidatorImpl implements DataFilePathValidator {
     private static Logger logger = LogManager.getLogger();
 
 
@@ -18,7 +18,7 @@ public class DataFileValidatorImpl implements DataFileValidator {
     }
 
     @Override
-    public boolean validateDataFile(String path) {
+    public boolean validateDataFilePath(String path) {
         boolean correctFilePath = validateFilePath(path);
         boolean result = false;
         if (correctFilePath) {

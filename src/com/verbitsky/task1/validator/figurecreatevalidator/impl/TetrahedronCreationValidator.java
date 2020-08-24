@@ -19,20 +19,22 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
     @Override
     public boolean validateFigureCreation(List<AreaPoint> pointList) {
         if (pointList == null) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: received null AreaPoint list");
+            logger.log(Level.INFO, "Tetrahedron creation validator:" +
+                    " creation impossible - received null AreaPoint list");
             return false;
         }
         if (pointList.size() != 4) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: wrong points count");
+            logger.log(Level.INFO, "Tetrahedron creation validator:" +
+                    " creation impossible - wrong points count");
             return false;
         }
         for (AreaPoint areaPoint : pointList) {
             if (areaPoint == null) {
-                logger.log(Level.INFO, "Tetrahedron creation validator: one of AreaPoints in list is null");
+                logger.log(Level.INFO, "Tetrahedron creation validator:" +
+                        " creation impossible - one of AreaPoints in list is null");
                 return false;
             }
         }
-
         AreaPoint a = pointList.get(0);
         AreaPoint b = pointList.get(1);
         AreaPoint c = pointList.get(2);
@@ -51,7 +53,8 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
             sbVerge = vergeCalculator.calculateVergeSize(s, b);
             scVerge = vergeCalculator.calculateVergeSize(s, c);
         } catch (FigureException ex) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: can't calculate all verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: " +
+                    "creation impossible - can't calculate all verges length");
             return false;
         }
         List<Double> verges = new ArrayList<>();
@@ -63,32 +66,31 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
         verges.add(scVerge);
         for (Double verge : verges) {
             if (verge <= 0.0) {
-                logger.log(Level.INFO, "Tetrahedron creation validator: wrong verge length");
+                logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - wrong verge length");
                 return false;
             }
         }
-
         if (abVerge != acVerge) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: different verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - different verges length");
             return false;
         }
         if (acVerge != bcVerge) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: different verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - different verges length");
             return false;
         }
         if (saVerge != abVerge) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: different verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - different verges length");
             return false;
         }
         if (saVerge != sbVerge) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: different verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - different verges length");
             return false;
         }
         if (sbVerge != scVerge) {
-            logger.log(Level.INFO, "Tetrahedron creation validator: different verges length");
+            logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - different verges length");
             return false;
         }
-        logger.log(Level.INFO, "Tetrahedron creation validator: creation is possible");
+        logger.log(Level.INFO, "Tetrahedron creation validator: creation possible");
         return true;
     }
 }

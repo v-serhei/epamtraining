@@ -3,14 +3,13 @@ package com.verbitsky.task1.factory.figurefactory.impl;
 import com.verbitsky.task1.entity.figure.Figure;
 import com.verbitsky.task1.entity.figure.impl.Tetrahedron;
 import com.verbitsky.task1.entity.point.AreaPoint;
-import com.verbitsky.task1.exception.FigureException;
 import com.verbitsky.task1.factory.figurefactory.FigureCreator;
 import com.verbitsky.task1.parser.DataParser;
 import com.verbitsky.task1.reader.DataReader;
-import com.verbitsky.task1.validator.datafilevalidator.DataFileValidator;
-import com.verbitsky.task1.validator.datafilevalidator.impl.DataFileValidatorImpl;
-import com.verbitsky.task1.validator.datavalidator.FigureDataValidator;
-import com.verbitsky.task1.validator.datavalidator.impl.TetrahedronDataValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.DataFilePathValidator;
+import com.verbitsky.task1.validator.datafilevalidator.filepathvalidator.impl.DataFilePathValidatorImpl;
+import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataValidator;
+import com.verbitsky.task1.validator.datafilevalidator.datavalidator.impl.TetrahedronDataValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.impl.TetrahedronCreationValidator;
 import org.apache.logging.log4j.Level;
@@ -32,17 +31,13 @@ public class TetrahedronCreator implements FigureCreator {
     //parse coordinates from strings
     private static DataParser lineParser = new DataParser();
     //data file validator
-    private static DataFileValidator fileValidator = new DataFileValidatorImpl();
+    private static DataFilePathValidator fileValidator = new DataFilePathValidatorImpl();
 
     @Override
     public Figure createFigure(List<AreaPoint> pointList) {
         Tetrahedron tetrahedron = null;
-        try {
-            if (creationValidator.validateFigureCreation(pointList)) {
-                tetrahedron = new Tetrahedron(pointList.get(0), pointList.get(1), pointList.get(2), pointList.get(3));
-            }
-        } catch (FigureException e) {
-            logger.log(Level.INFO, "Tetrahedron creator: received null object in createFigure method");
+        if (creationValidator.validateFigureCreation(pointList)) {
+            tetrahedron = new Tetrahedron(pointList.get(0), pointList.get(1), pointList.get(2), pointList.get(3));
         }
         logger.log(Level.INFO, "Created figure: " + tetrahedron);
         return tetrahedron;
@@ -56,7 +51,7 @@ public class TetrahedronCreator implements FigureCreator {
 
     public List<Figure> createFiguresFromFile(String path) {
         boolean flag = false;
-        if (!fileValidator.validateDataFile(path)) {
+        if (!fileValidator.validateDataFilePath(path)) {
             logger.log(Level.ERROR, "Wrong data file, shutdown program");
             throw new RuntimeException("TetrahedronCreator: wrong data file");
         }
