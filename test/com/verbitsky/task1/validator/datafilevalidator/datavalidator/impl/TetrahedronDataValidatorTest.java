@@ -20,7 +20,7 @@ public class TetrahedronDataValidatorTest {
 
     /* Positive result tests*/
     @Test
-    public void testValidateData() {
+    public void testValidateDataPositive() {
         String data = "1.0   1.0 1.0;   2.0       122.0 2.0;  3.0   3.0   3.0; 4.0   4.0    4.0;";
         Assert.assertTrue(validator.validateData(data));
     }

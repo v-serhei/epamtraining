@@ -37,7 +37,7 @@ public class TetrahedronCreationValidatorTest {
 
     /*  Positive result tests */
     @Test (description = "Test creation with correct arguments")
-    public void testValidateFigureCreation() {
+    public void testValidateFigureCreationPositive() {
         List<AreaPoint> pointList = new ArrayList<>();
         pointList.add(areaPointA);
         pointList.add(areaPointB);

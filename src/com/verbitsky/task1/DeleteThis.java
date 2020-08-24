@@ -1,8 +1,18 @@
 package com.verbitsky.task1;
 
+import java.io.File;
+
 public class DeleteThis {
     public static void main(String[] args) {
-        double rebro = 2 * Math.sqrt(2);
+        File f = new File ("data"+ File.separator+"fileforcreation" + File.separator+ "figureparametres.txt");
+        if (f.exists())
+        {
+            System.out.println("TRUE");
+            System.out.println(f.length());
+        } else {
+            System.out.println("fail");
+        }
+        /*double rebro = 2 * Math.sqrt(2);
         double s = Math.sqrt(3) * rebro * rebro;
         double v = Math.sqrt(2)/12*rebro*rebro*rebro;
 
@@ -12,7 +22,7 @@ public class DeleteThis {
         System.out.println("s="+s);
         System.out.println("v="+v);
 
-
+*/
       /* String [] words = new String[4];
         words[0] = "0";
         words[1] = "1";
