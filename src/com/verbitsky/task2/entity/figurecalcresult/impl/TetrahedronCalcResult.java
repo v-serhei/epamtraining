@@ -3,11 +3,11 @@ package com.verbitsky.task2.entity.figurecalcresult.impl;
 import com.verbitsky.task1.entity.figure.Figure;
 import com.verbitsky.task2.entity.figurecalcresult.FigureCalcResult;
 
-public class TetrahedronCalcResults extends FigureCalcResult {
+public class TetrahedronCalcResult extends FigureCalcResult {
     private double planeSquare;
     private double volume;
 
-    public TetrahedronCalcResults(Figure figure, double planeSquare, double volume) {
+    public TetrahedronCalcResult(Figure figure, double planeSquare, double volume) {
         setFigure(figure);
         this.planeSquare = planeSquare;
         this.volume = volume;
@@ -24,9 +24,9 @@ public class TetrahedronCalcResults extends FigureCalcResult {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TetrahedronCalcResults)) return false;
+        if (!(o instanceof TetrahedronCalcResult)) return false;
 
-        TetrahedronCalcResults that = (TetrahedronCalcResults) o;
+        TetrahedronCalcResult that = (TetrahedronCalcResult) o;
 
         if (Double.compare(that.planeSquare, planeSquare) != 0) return false;
         return Double.compare(that.volume, volume) == 0;

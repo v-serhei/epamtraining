@@ -1,36 +1,27 @@
 package com.verbitsky.task2.entity.warehouse.impl;
 
-import com.verbitsky.task2.entity.figurecalcresult.FigureCalcResult;
 import com.verbitsky.task2.entity.warehouse.Warehouse;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class FigureWarehouse extends Warehouse {
-    private Map<Long, FigureCalcResult> wareHouse;
 
     public FigureWarehouse() {
         setWarehouseId();
-        wareHouse = new HashMap<>();
+        setWareHouse();
     }
 
-    public Map<Long, FigureCalcResult> getWareHouse() {
-        return wareHouse;
-    }
-
-    @Override
+     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof FigureWarehouse)) return false;
 
         FigureWarehouse that = (FigureWarehouse) o;
 
-        return getWareHouse() != null ? getWareHouse().equals(that.getWareHouse()) : that.getWareHouse() == null;
+        return getStorage() != null ? getStorage().equals(that.getStorage()) : that.getStorage() == null;
     }
 
     @Override
     public int hashCode() {
-        return getWareHouse() != null ? getWareHouse().hashCode() : 0;
+        return getStorage() != null ? getStorage().hashCode() : 0;
     }
 
     @Override
@@ -39,7 +30,7 @@ public class FigureWarehouse extends Warehouse {
         sb.append("Figure warehouse, id=");
         sb.append(getWarehouseId());
         sb.append(": number of figures in storage=");
-        sb.append(wareHouse.size());
+        sb.append(getStorage().size());
         return sb.toString();
     }
 }
