@@ -45,7 +45,7 @@ public class TetrahedronSorterTest {
         figureB = null;
         sorter = null;
     }
-
+    /* Positive tests results */
     @Test
     public void testSortFiguresByIdPositive() {
         List<Figure> list = sorter.sortFiguresById(figureB, figureA);
@@ -62,6 +62,7 @@ public class TetrahedronSorterTest {
         Assert.assertTrue(firstX <= secondX);
     }
 
+    /* Negative tests results */
     @Test
     public void testTestSortFiguresByIdWithNullArgs() {
         List<Figure> list = sorter.sortFiguresById();
