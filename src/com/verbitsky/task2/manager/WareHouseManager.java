@@ -15,13 +15,30 @@ public class WareHouseManager {
     private WareHouseManager() {
     }
 
-    public void addFigureToWarehouse(Figure figure, FigureCalcResult calcResult) {
+    public static void addFigureToWarehouse(Figure figure, FigureCalcResult calcResult) {
+        if (figure == null || calcResult==null) {
+            logger.log(Level.INFO,"Warehouse manager add method: received null objects");
+            return;
+        }
         wareHouse.getStorage().put(figure.getFigureId(), calcResult);
         logger.log(Level.INFO, "Warehouse manager: add calculation result to storage");
     }
 
-    public void removeFigureFromWarehouse (Figure figure) {
+    public static void removeFigureFromWarehouse(Figure figure) {
+        if (figure == null) {
+            logger.log(Level.INFO,"Warehouse manager remove method: received null object");
+            return;
+        }
         wareHouse.getStorage().remove(figure.getFigureId());
         logger.log(Level.INFO, "Warehouse manager: remove calculation result from storage");
+    }
+
+    public static void clearWarehouseStorage () {
+        logger.log(Level.INFO, "Warehouse manager: clear storage");
+        wareHouse.getStorage().clear();
+    }
+
+    public static int getCurrentWarehouseSize() {
+        return wareHouse.getStorage().size();
     }
 }

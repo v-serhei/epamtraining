@@ -13,6 +13,10 @@ import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataV
 import com.verbitsky.task1.validator.datafilevalidator.datavalidator.impl.TetrahedronDataValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.FigureCreationValidator;
 import com.verbitsky.task1.validator.figurecreatevalidator.impl.TetrahedronCreationValidator;
+import com.verbitsky.task2.entity.figurecalcresult.FigureCalcResult;
+import com.verbitsky.task2.factory.CalcResultsCreator;
+import com.verbitsky.task2.factory.impl.FigureCalcResultCreator;
+import com.verbitsky.task2.manager.WareHouseManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,6 +37,9 @@ public class TetrahedronCreator implements FigureCreator {
     private static DataParser lineParser = new DataParser();
     //data file validator
     private static DataFileValidator fileValidator = new DataFileValidatorImpl();
+    /* Task 2 */
+    //figure calculations result creator
+    private static CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
 
     @Override
     public Figure createFigure(List<AreaPoint> pointList) throws FigureException {
@@ -43,6 +50,7 @@ public class TetrahedronCreator implements FigureCreator {
             throw new FigureException("TetrahedronCreator: can't create figure");
         }
         logger.log(Level.INFO, "Created figure: " + tetrahedron);
+        saveFigureToWarehouse(tetrahedron);
         return tetrahedron;
     }
 
@@ -64,5 +72,10 @@ public class TetrahedronCreator implements FigureCreator {
             }
         }
         return figures;
+    }
+    /* Task 2 methods*/
+    public void saveFigureToWarehouse (Figure figure) throws FigureException {
+        FigureCalcResult result = resultsCreator.createCalcResult(figure);
+        WareHouseManager.addFigureToWarehouse(figure, result);
     }
 }
