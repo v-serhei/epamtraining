@@ -40,24 +40,24 @@ public class WareHouseManagerTest {
     /* Positive tests results*/
     @Test
     public void testRemoveFigureFromWarehousePositive() throws FigureException {
-        WareHouseManager.clearWarehouseStorage();
+        WareHouseManager.INSTANCE.clearWarehouseStorage();
         CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
         FigureCalcResult calcResult = resultsCreator.createCalcResult(figure);
-        WareHouseManager.addFigureToWarehouse(figure, calcResult);
-        int sizeBefore = WareHouseManager.getCurrentWarehouseSize();
-        WareHouseManager.removeFigureFromWarehouse(figure);
-        int sizeAfter = WareHouseManager.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.addFigureToWarehouse(figure, calcResult);
+        int sizeBefore = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.removeFigureFromWarehouse(figure);
+        int sizeAfter = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
         Assert.assertNotEquals(sizeAfter, sizeBefore);
     }
 
     @Test
     public void testAddFigureToWarehousePositive() throws FigureException {
-        WareHouseManager.clearWarehouseStorage();
+        WareHouseManager.INSTANCE.clearWarehouseStorage();
         CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
         FigureCalcResult calcResult = resultsCreator.createCalcResult(figure);
-        int sizeBefore = WareHouseManager.getCurrentWarehouseSize();
-        WareHouseManager.addFigureToWarehouse(figure, calcResult);
-        int sizeAfter = WareHouseManager.getCurrentWarehouseSize();
+        int sizeBefore = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.addFigureToWarehouse(figure, calcResult);
+        int sizeAfter = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
         System.out.println("before=" + sizeBefore + " after=" + sizeAfter);
         Assert.assertNotEquals(sizeAfter, sizeBefore);
     }
@@ -65,23 +65,23 @@ public class WareHouseManagerTest {
     /* Negative tests results*/
     @Test
     public void testAddFigureToWarehouseWithNullArgs() {
-        WareHouseManager.clearWarehouseStorage();
-        int sizeBefore = WareHouseManager.getCurrentWarehouseSize();
-        WareHouseManager.addFigureToWarehouse(figure, null);
-        int sizeAfter = WareHouseManager.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.clearWarehouseStorage();
+        int sizeBefore = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.addFigureToWarehouse(figure, null);
+        int sizeAfter = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
         System.out.println("before=" + sizeBefore + " after=" + sizeAfter);
         Assert.assertEquals(sizeAfter, sizeBefore);
     }
 
     @Test
     public void testRemoveFigureFromWarehouseWithNullArgs() throws FigureException {
-        WareHouseManager.clearWarehouseStorage();
+        WareHouseManager.INSTANCE.clearWarehouseStorage();
         CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
         FigureCalcResult calcResult = resultsCreator.createCalcResult(figure);
-        WareHouseManager.addFigureToWarehouse(figure, calcResult);
-        int sizeBefore = WareHouseManager.getCurrentWarehouseSize();
-        WareHouseManager.removeFigureFromWarehouse(null);
-        int sizeAfter = WareHouseManager.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.addFigureToWarehouse(figure, calcResult);
+        int sizeBefore = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
+        WareHouseManager.INSTANCE.removeFigureFromWarehouse(null);
+        int sizeAfter = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
         Assert.assertEquals(sizeAfter, sizeBefore);
     }
 }

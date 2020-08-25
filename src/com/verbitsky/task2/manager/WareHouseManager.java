@@ -8,14 +8,13 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class WareHouseManager {
+
+public enum WareHouseManager {
+    INSTANCE;
     private static Warehouse wareHouse = new FigureWarehouse();
     private static Logger logger = LogManager.getLogger();
 
-    private WareHouseManager() {
-    }
-
-    public static void addFigureToWarehouse(Figure figure, FigureCalcResult calcResult) {
+    public void addFigureToWarehouse(Figure figure, FigureCalcResult calcResult) {
         if (figure == null || calcResult==null) {
             logger.log(Level.INFO,"Warehouse manager add method: received null objects");
             return;
@@ -24,7 +23,7 @@ public class WareHouseManager {
         logger.log(Level.INFO, "Warehouse manager: add calculation result to storage");
     }
 
-    public static void removeFigureFromWarehouse(Figure figure) {
+    public void removeFigureFromWarehouse(Figure figure) {
         if (figure == null) {
             logger.log(Level.INFO,"Warehouse manager remove method: received null object");
             return;
@@ -33,12 +32,12 @@ public class WareHouseManager {
         logger.log(Level.INFO, "Warehouse manager: remove calculation result from storage");
     }
 
-    public static void clearWarehouseStorage () {
+    public void clearWarehouseStorage () {
         logger.log(Level.INFO, "Warehouse manager: clear storage");
         wareHouse.getStorage().clear();
     }
 
-    public static int getCurrentWarehouseSize() {
+    public int getCurrentWarehouseSize() {
         return wareHouse.getStorage().size();
     }
 }

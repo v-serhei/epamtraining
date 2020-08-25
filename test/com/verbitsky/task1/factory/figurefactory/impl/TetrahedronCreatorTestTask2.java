@@ -41,11 +41,12 @@ public class TetrahedronCreatorTestTask2 {
     /* Positive test result */
     @Test
     public void testSaveFigureToWarehousePositive() throws FigureException {
+        WareHouseManager.INSTANCE.clearWarehouseStorage();
         Figure figure = new Tetrahedron(areaPointA, areaPointB, areaPointC, areaPointTop);
-        int storageSizeBefore = WareHouseManager.getCurrentWarehouseSize();
+        int storageSizeBefore = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
         figureCreator.saveFigureToWarehouse(figure);
-        int storageSizeAfter = WareHouseManager.getCurrentWarehouseSize();
-        Assert.assertEquals(storageSizeBefore, storageSizeAfter);
+        int storageSizeAfter = WareHouseManager.INSTANCE.getCurrentWarehouseSize();
+        Assert.assertNotEquals(storageSizeBefore, storageSizeAfter);
     }
 
     /* Negative test result */

@@ -76,6 +76,6 @@ public class TetrahedronCreator implements FigureCreator {
     /* Task 2 methods*/
     public void saveFigureToWarehouse (Figure figure) throws FigureException {
         FigureCalcResult result = resultsCreator.createCalcResult(figure);
-        WareHouseManager.addFigureToWarehouse(figure, result);
+        WareHouseManager.INSTANCE.addFigureToWarehouse(figure, result);
     }
 }
