@@ -4,7 +4,7 @@ import com.verbitsky.task1.entity.*;
 import com.verbitsky.task1.exception.FigureException;
 import com.verbitsky.task1.factory.CalcResultsCreator;
 import com.verbitsky.task1.factory.FigureCreator;
-import com.verbitsky.task1.parser.DataParser;
+import com.verbitsky.task1.parser.impl.TetrahedronDataParser;
 import com.verbitsky.task1.reader.impl.DataReader;
 import com.verbitsky.task1.validator.FigureCreationValidator;
 import com.verbitsky.task1.validator.FigureDataValidator;
@@ -27,7 +27,7 @@ public class TetrahedronCreator implements FigureCreator {
     //check string data for correctness
     private static FigureDataValidator dataValidator = new TetrahedronDataValidator();
     //parse coordinates from strings
-    private static DataParser lineParser = new DataParser();
+    private static TetrahedronDataParser lineParser = new TetrahedronDataParser();
     //figure calculations result creator
     private static CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
 
