@@ -9,9 +9,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TetrahedronSorterTest {
+    private static final int FIRST_FIGURE_INDEX = 0;
+    private static final int SECOND_FIGURE_INDEX = 1;
     private AreaPoint areaPointA;
     private AreaPoint areaPointB;
     private AreaPoint areaPointC;
@@ -47,31 +50,45 @@ public class TetrahedronSorterTest {
     }
     /* Positive tests results */
     @Test
-    public void testSortFiguresByIdPositive() {
-        List<Figure> list = sorter.sortFiguresById(figureB, figureA);
-        long firstId = list.get(0).getFigureId();
-        long secondId = list.get(1).getFigureId();
+    public void testSortFiguresById() {
+        List<Figure> list = new ArrayList<>();
+        list.add (figureB);
+        list.add (figureA);
+        sorter.sortFiguresById(list, false);
+        long firstId = list.get(FIRST_FIGURE_INDEX).getFigureId();
+        long secondId = list.get(SECOND_FIGURE_INDEX).getFigureId();
         Assert.assertTrue(firstId <= secondId);
+    }
+    @Test
+    public void testSortFiguresByIReversedOrder() {
+        List<Figure> list = new ArrayList<>();
+        list.add (figureB);
+        list.add (figureA);
+        sorter.sortFiguresById(list, true);
+        long firstId = list.get(FIRST_FIGURE_INDEX).getFigureId();
+        long secondId = list.get(SECOND_FIGURE_INDEX).getFigureId();
+        Assert.assertTrue(secondId <= firstId);
     }
 
     @Test
-    public void testSortFiguresByFirstPointCoordinateXPositive() {
-        List<Figure> list = sorter.sortFiguresById(figureB, figureA);
-        double firstX = ((Tetrahedron) list.get(0)).getPointA().getXCoordinate();
-        double secondX = ((Tetrahedron) list.get(0)).getPointA().getXCoordinate();
+    public void testSortFiguresByFirstPointCoordinateX() {
+        List<Figure> list = new ArrayList<>();
+        list.add (figureB);
+        list.add (figureA);
+        sorter.sortFiguresByFirstPointCoordinateX(list, false);
+        double firstX = ((Tetrahedron) list.get(FIRST_FIGURE_INDEX)).getPointA().getXCoordinate();
+        double secondX = ((Tetrahedron) list.get(SECOND_FIGURE_INDEX)).getPointA().getXCoordinate();
         Assert.assertTrue(firstX <= secondX);
     }
 
-    /* Negative tests results */
     @Test
-    public void testTestSortFiguresByIdWithNullArgs() {
-        List<Figure> list = sorter.sortFiguresById();
-        Assert.assertTrue(list.isEmpty());
-    }
-
-    @Test
-    public void testTestSortFiguresByFirstPointCoordinateXWithNullArgs() {
-        List<Figure> list = sorter.sortFiguresByFirstPointCoordinateX();
-        Assert.assertTrue(list.isEmpty());
+    public void testSortFiguresByFirstPointCoordinateXReversedOrder() {
+        List<Figure> list = new ArrayList<>();
+        list.add (figureB);
+        list.add (figureA);
+        sorter.sortFiguresByFirstPointCoordinateX(list, true);
+        double firstX = ((Tetrahedron) list.get(FIRST_FIGURE_INDEX)).getPointA().getXCoordinate();
+        double secondX = ((Tetrahedron) list.get(SECOND_FIGURE_INDEX)).getPointA().getXCoordinate();
+        Assert.assertTrue(secondX <= firstX);
     }
 }

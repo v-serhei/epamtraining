@@ -7,5 +7,4 @@ public interface FigureCalculator {
     double calculateSquare (Figure figure) throws FigureException;
     double calculateVolume (Figure figure) throws FigureException;
     double calculateVolumeRatio (Figure figure, double subspaceHeight) throws FigureException;
-    boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException;
 }

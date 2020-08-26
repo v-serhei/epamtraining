@@ -1,7 +1,6 @@
 package com.verbitsky.task1.action.impl;
 
 import com.verbitsky.task1.action.FigureCalculator;
-import com.verbitsky.task1.action.impl.TetrahedronCalculator;
 import com.verbitsky.task1.entity.Figure;
 import com.verbitsky.task1.entity.Tetrahedron;
 import com.verbitsky.task1.entity.AreaPoint;
@@ -72,6 +71,6 @@ public class TetrahedronCalculatorTest {
         AreaPoint pointC = new AreaPoint(0, 1, -1);
         AreaPoint pointTop = new AreaPoint(2, -1, -1);
         Figure figure = new Tetrahedron(pointA, pointB, pointC, pointTop);
-        AssertJUnit.assertTrue(figureCalculator.isFigureOnCoordinatesPlane(figure));
+        AssertJUnit.assertTrue(TetrahedronCalculator.isFigureOnCoordinatesPlane(figure));
     }
 }

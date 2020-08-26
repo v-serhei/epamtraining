@@ -1,30 +1,47 @@
 package com.verbitsky.task1.entity;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public abstract class Warehouse {
-    private long warehouseId;
-    private Map<Long, FigureCalcResult> storage;
-
-    public long getWarehouseId() {
-        return warehouseId;
-    }
-
-    public void setWarehouseId() {
-        this.warehouseId = WarehouseIdGenerator.generateId();
-    }
+public enum Warehouse {
+    INSTANCE;
+    private Map<Long, FigureCalcResult> storage = new HashMap<>();
 
     public Map<Long, FigureCalcResult> getStorage() {
-        return storage;
+        return Collections.unmodifiableMap(storage);
     }
 
-    public void setWareHouse() {
-        this.storage = new HashMap<>();
+    public FigureCalcResult get(Long key) {
+        return storage.get(key);
+    }
+
+    public FigureCalcResult remove(Long key) {
+        return storage.remove(key);
+    }
+
+    public Set<Map.Entry<Long, FigureCalcResult>> entrySet() {
+        return storage.entrySet();
+    }
+
+    public FigureCalcResult putIfAbsent(Long key, FigureCalcResult value) {
+        return storage.putIfAbsent(key, value);
+    }
+
+    public void clear() {
+        storage.clear();
+    }
+
+    public int getStorageSize() {
+        return getStorage().size();
     }
 
     @Override
     public String toString() {
-        return "Base warehouse";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Figure warehouse: number of figures in storage=");
+        sb.append(storage.size());
+        return sb.toString();
     }
 }

@@ -8,12 +8,15 @@ import java.util.List;
 
 public class DataParser {
     /*
-        GROUP_COORDINATES_SEPARATOR
-        separate points coordinate in line, for example: (first group)1.0 1.0 1.0 ; (second group) 2.0 2.0 2.0
-     */
+      GROUP_COORDINATES_SEPARATOR
+      separate points coordinate in line, for example: (first group)1.0 1.0 1.0 ; (second group) 2.0 2.0 2.0
+    */
     private static final String GROUP_COORDINATES_SEPARATOR = ";";
     private static final String DEFAULT_COORDINATE_SEPARATOR = " ";
     private static final String MULTIPLE_SPACES = "\\s+";
+    private static final int CYCLE_STEP = 3;
+    public static final int SECOND_POINT_INDEX_OFFSET = 1;
+    public static final int THIRD_POINT_INDEX_OFFSET = 2;
 
     public List<AreaPoint> parseAreaPointsFromLine(String line, FigureDataValidator figureDataValidator) {
         boolean correctData = figureDataValidator.validateData(line);
@@ -43,8 +46,12 @@ public class DataParser {
 
     private List<AreaPoint> createPointsFromCoordinates(double[] coordinates) {
         List<AreaPoint> result = new ArrayList<>();
-        for (int i = 0; i < coordinates.length - 1; i += 3) {
-            result.add(new AreaPoint(coordinates[i], coordinates[i + 1], coordinates[i + 2]));
+        for (int i = 0; i < coordinates.length - 1; i += CYCLE_STEP) {
+            result.add(new AreaPoint(
+                    coordinates[i],
+                    coordinates[i + SECOND_POINT_INDEX_OFFSET],
+                    coordinates[i + THIRD_POINT_INDEX_OFFSET])
+            );
         }
         return result;
     }

@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Objects;
-
 public class Tetrahedron extends Figure {
     private static Logger logger = LogManager.getLogger();
     private AreaPoint pointA;
@@ -28,7 +26,6 @@ public class Tetrahedron extends Figure {
             vergeSize = vergeCalculator.calculateVergeSize(pointA, pointB);
         } catch (FigureException e) {
             logger.log(Level.INFO, "Tetrahedron constructor: can't calculate verge size, cause: null AreaPoints");
-            vergeSize = 0;
         }
     }
 
@@ -56,12 +53,14 @@ public class Tetrahedron extends Figure {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Tetrahedron)) return false;
+
         Tetrahedron that = (Tetrahedron) o;
-        return this.getFigureId() == that.getFigureId() &&
-                Objects.equals(pointA, that.pointA) &&
-                Objects.equals(pointB, that.pointB) &&
-                Objects.equals(pointC, that.pointC) &&
-                Objects.equals(topPoint, that.topPoint);
+
+        if (Double.compare(that.getVergeSize(), getVergeSize()) != 0) return false;
+        if (getPointA() != null ? !getPointA().equals(that.getPointA()) : that.getPointA() != null) return false;
+        if (getPointB() != null ? !getPointB().equals(that.getPointB()) : that.getPointB() != null) return false;
+        if (getPointC() != null ? !getPointC().equals(that.getPointC()) : that.getPointC() != null) return false;
+        return getTopPoint() != null ? getTopPoint().equals(that.getTopPoint()) : that.getTopPoint() == null;
     }
 
     @Override
@@ -75,21 +74,18 @@ public class Tetrahedron extends Figure {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb
-                .append("Tetrahedron: id=")
-                .append(getFigureId())
-                .append(" points (")
-                .append("A: ")
-                .append(pointA)
-                .append("B: ")
-                .append(pointB)
-                .append("C: ")
-                .append(pointA)
-                .append("Top: ")
-                .append(topPoint)
-                .append(")")
-                .append(" verge size=")
-                .append(vergeSize);
+        sb.append("Tetrahedron: id=");
+        sb.append(getFigureId());
+        sb.append(" points (A: ");
+        sb.append(pointA);
+        sb.append("B: ");
+        sb.append(pointB);
+        sb.append("C: ");
+        sb.append(pointA);
+        sb.append("Top: ");
+        sb.append(topPoint);
+        sb.append(") verge size=");
+        sb.append(vergeSize);
         return sb.toString();
     }
 }

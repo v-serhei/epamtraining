@@ -18,11 +18,13 @@ public class TetrahedronCalculator implements FigureCalculator {
 
     @Override
     public double calculateSquare(Figure figure) throws FigureException {
+        if (figure ==null) {
+            throw new FigureException("Calculate tetrahedron square: method call with null");
+        }
         double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
             double verge = tetrahedron.getVergeSize();
-            logger.log(Level.DEBUG, "tetrahedron verge size="+tetrahedron.getVergeSize());
             result = pow(verge, 2) * sqrt(3);
             logger.log(Level.INFO, "Calculate tetrahedron square: result = " + result);
         } else {
@@ -33,6 +35,9 @@ public class TetrahedronCalculator implements FigureCalculator {
 
     @Override
     public double calculateVolume(Figure figure) throws FigureException {
+        if (figure ==null) {
+            throw new FigureException("Calculate tetrahedron volume: method call with null");
+        }
         double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
@@ -46,6 +51,9 @@ public class TetrahedronCalculator implements FigureCalculator {
 
     @Override
     public double calculateVolumeRatio(Figure figure, double subspaceHeight) throws FigureException {
+        if (figure ==null || subspaceHeight == 0) {
+            throw new FigureException("Calculate tetrahedrons ratio: method call with null");
+        }
         double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
@@ -71,8 +79,10 @@ public class TetrahedronCalculator implements FigureCalculator {
         return result;
     }
 
-    @Override
-    public boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException {
+    public static boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException {
+        if (figure ==null) {
+            throw new FigureException("Is tetrahedrons on coordinates plane: method call with null");
+        }
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
             AreaPoint pointA = tetrahedron.getPointA();

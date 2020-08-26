@@ -1,33 +1,35 @@
 package com.verbitsky.task1.action.impl;
 
+import com.verbitsky.task1.action.FigureSorter;
 import com.verbitsky.task1.entity.Figure;
 import com.verbitsky.task1.entity.Tetrahedron;
-import com.verbitsky.task1.action.FigureSorter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class TetrahedronSorter implements FigureSorter {
     private static Logger logger = LogManager.getLogger();
 
     @Override
-    public List<Figure> sortFiguresById(List<Figure> figures) {
+    public void sortFiguresById(List<Figure> figures, boolean reversedOrder) {
         if (figures != null && !figures.isEmpty()) {
-            figures.sort(Comparator.comparingLong(Figure::getFigureId));
+            figures.sort((o1, o2) -> {
+                if (reversedOrder) {
+                    return Long.compare(o2.getFigureId(), o1.getFigureId());
+                } else {
+                    return Long.compare(o1.getFigureId(), o2.getFigureId());
+                }
+            });
             logger.log(Level.INFO, "TetrahedronSorter: items sorted by figureId field");
         } else {
             logger.log(Level.INFO, "TetrahedronSorter: empty or null arguments");
         }
-        return figures;
     }
 
     @Override
-    public List<Figure> sortFiguresByFirstPointCoordinateX(List<Figure> figures) {
+    public void sortFiguresByFirstPointCoordinateX(List<Figure> figures, boolean reversedOrder) {
         if (figures != null && !figures.isEmpty()) {
             figures.sort((o1, o2) -> {
                 double firstX = 0;
@@ -38,26 +40,15 @@ public class TetrahedronSorter implements FigureSorter {
                 } catch (ClassCastException ex) {
                     logger.log(Level.INFO, "TetrahedronSorter: unsupported figure type, true sorting results not granted");
                 }
-                return Double.compare(firstX, secondX);
+                if (reversedOrder) {
+                    return Double.compare(secondX, firstX);
+                } else {
+                    return Double.compare(firstX, secondX);
+                }
             });
-            logger.log(Level.INFO, "TetrahedronSorter: items sorted by figureId field");
+            logger.log(Level.INFO, "TetrahedronSorter: items sorted by first point coordinate X");
         } else {
             logger.log(Level.INFO, "TetrahedronSorter: empty or null arguments");
         }
-        return figures;
-    }
-
-    @Override
-    public List<Figure> sortFiguresById(Figure... figures) {
-        List<Figure> list = new ArrayList<>(Arrays.asList(figures));
-        list = sortFiguresById(list);
-        return list;
-    }
-
-    @Override
-    public List<Figure> sortFiguresByFirstPointCoordinateX(Figure... figures) {
-        List<Figure> list = new ArrayList<>(Arrays.asList(figures));
-        list = sortFiguresByFirstPointCoordinateX(list);
-        return list;
     }
 }
