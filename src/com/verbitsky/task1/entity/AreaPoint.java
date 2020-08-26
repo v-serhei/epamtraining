@@ -46,14 +46,13 @@ public class AreaPoint {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb
-                .append("AreaPoint(x=")
-                .append(xCoordinate)
-                .append(", y=")
-                .append(yCoordinate)
-                .append(", z=")
-                .append(zCoordinate)
-                .append(')');
+        sb.append("AreaPoint(x=");
+        sb.append(xCoordinate);
+        sb.append(", y=");
+        sb.append(yCoordinate);
+        sb.append(", z=");
+        sb.append(zCoordinate);
+        sb.append(')');
         return sb.toString();
     }
 }

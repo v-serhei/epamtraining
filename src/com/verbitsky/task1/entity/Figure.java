@@ -15,6 +15,6 @@ public abstract class Figure {
 
     @Override
     public String toString() {
-        return "BaseFigure: figureId = "+ figureId;
+        return "Base figure";
     }
 }
