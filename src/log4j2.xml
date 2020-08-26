@@ -10,9 +10,7 @@
         </property>
     </Properties>
     <Appenders>
-        <Console
-                 name="Console"
-                 >
+        <Console name="Console">
             <PatternLayout pattern="${consoleLogPattern}"/>
         </Console>
         <RollingFile name="TextFile"

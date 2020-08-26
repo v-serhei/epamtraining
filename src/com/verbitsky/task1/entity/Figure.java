@@ -5,7 +5,7 @@ import com.verbitsky.task1.generator.FigureIdGenerator;
 public abstract class Figure {
     private long figureId;
 
-    public void setFigureId() {
+    public void generateFigureId() {
         this.figureId = FigureIdGenerator.generateId();
     }
 

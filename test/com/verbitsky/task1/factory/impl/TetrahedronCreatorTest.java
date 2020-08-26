@@ -1,9 +1,8 @@
 package com.verbitsky.task1.factory.impl;
 
-import com.verbitsky.task1.entity.Figure;
 import com.verbitsky.task1.entity.AreaPoint;
+import com.verbitsky.task1.entity.Figure;
 import com.verbitsky.task1.exception.FigureException;
-import com.verbitsky.task1.factory.impl.TetrahedronCreator;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

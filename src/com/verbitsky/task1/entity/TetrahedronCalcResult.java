@@ -18,6 +18,14 @@ public class TetrahedronCalcResult extends FigureCalcResult {
         return volume;
     }
 
+    public void setPlaneSquare(double planeSquare) {
+        this.planeSquare = planeSquare;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

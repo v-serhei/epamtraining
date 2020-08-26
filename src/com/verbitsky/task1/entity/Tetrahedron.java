@@ -3,20 +3,30 @@ package com.verbitsky.task1.entity;
 import com.verbitsky.task1.action.VergeCalculator;
 import com.verbitsky.task1.action.impl.VergeCalculatorImpl;
 import com.verbitsky.task1.exception.FigureException;
+import com.verbitsky.task1.observer.FigureObserver;
+import com.verbitsky.task1.validator.FigureCreationValidator;
+import com.verbitsky.task1.validator.impl.TetrahedronCreationValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class Tetrahedron extends Figure {
+    private static final int FIRST_POINT_INDEX = 0;
+    private static final int SECOND_POINT_INDEX = 1;
+    private static final int THIRD_POINT_INDEX = 2;
+    private static final int TOP_POINT_INDEX = 3;
     private static Logger logger = LogManager.getLogger();
     private AreaPoint pointA;
     private AreaPoint pointB;
     private AreaPoint pointC;
     private AreaPoint topPoint;
     private double vergeSize;
+    private FigureObserver observer;
 
     public Tetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint topPoint) {
-        setFigureId();
+        super.generateFigureId();
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
@@ -27,6 +37,8 @@ public class Tetrahedron extends Figure {
         } catch (FigureException e) {
             logger.log(Level.INFO, "Tetrahedron constructor: can't calculate verge size, cause: null AreaPoints");
         }
+        //attach wh observer to observe object changes
+        observer = Warehouse.INSTANCE.getObserver();
     }
 
     public AreaPoint getPointA() {
@@ -47,6 +59,25 @@ public class Tetrahedron extends Figure {
 
     public double getVergeSize() {
         return vergeSize;
+    }
+
+    public boolean setPoints(List <AreaPoint> points) {
+        FigureCreationValidator validator = new TetrahedronCreationValidator();
+        if (validator.validateFigureCreation(points)) {
+            this.pointA = points.get(FIRST_POINT_INDEX);
+            this.pointB = points.get(SECOND_POINT_INDEX);
+            this.pointC = points.get(THIRD_POINT_INDEX);
+            this.topPoint = points.get(TOP_POINT_INDEX);
+            notifyObserver();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void generateFigureId() {
+        super.generateFigureId();
     }
 
     @Override
@@ -87,5 +118,9 @@ public class Tetrahedron extends Figure {
         sb.append(") verge size=");
         sb.append(vergeSize);
         return sb.toString();
+    }
+
+    private void notifyObserver () {
+        observer.actionPerformed(this);
     }
 }
