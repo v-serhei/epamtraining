@@ -1,7 +1,6 @@
-package com.verbitsky.task1.reader;
+package com.verbitsky.task1.reader.impl;
 
 import com.verbitsky.task1.exception.FigureException;
-import com.verbitsky.task1.reader.impl.DataReader;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

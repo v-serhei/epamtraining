@@ -61,6 +61,6 @@ public class TetrahedronTypeValidatorTest {
         Figure emptyFigure = null;
         boolean expected = false;
         boolean actual = validator.isObjectFigure(emptyFigure);
-
+        AssertJUnit.assertEquals(expected, actual);
     }
 }
