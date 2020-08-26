@@ -13,6 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TetrahedronCreationValidator implements FigureCreationValidator {
+    public static final int FIRST_POINT_INDEX = 0;
+    public static final int SECOND_POINT_INDEX = 1;
+    public static final int THIRD_POINT_INDEX = 2;
+    public static final int FOURTH_POINT_INDEX = 3;
+    public static final int REQUIRED_POINTS_COUNT = 4;
+    public static final int NEGATIVE_VERGE_LENGTH = 0;
     private static Logger logger = LogManager.getLogger();
     private static VergeCalculator vergeCalculator = new VergeCalculatorImpl();
 
@@ -23,7 +29,7 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
                     " creation impossible - received null AreaPoint list");
             return false;
         }
-        if (pointList.size() != 4) {
+        if (pointList.size() != REQUIRED_POINTS_COUNT) {
             logger.log(Level.INFO, "Tetrahedron creation validator:" +
                     " creation impossible - wrong points count");
             return false;
@@ -35,10 +41,10 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
                 return false;
             }
         }
-        AreaPoint a = pointList.get(0);
-        AreaPoint b = pointList.get(1);
-        AreaPoint c = pointList.get(2);
-        AreaPoint s = pointList.get(3);
+        AreaPoint pointA = pointList.get(FIRST_POINT_INDEX);
+        AreaPoint pointB = pointList.get(SECOND_POINT_INDEX);
+        AreaPoint pointC = pointList.get(THIRD_POINT_INDEX);
+        AreaPoint pointTop = pointList.get(FOURTH_POINT_INDEX);
         double abVerge;
         double acVerge;
         double bcVerge;
@@ -46,12 +52,12 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
         double sbVerge;
         double scVerge;
         try {
-            abVerge = vergeCalculator.calculateVergeSize(a, b);
-            acVerge = vergeCalculator.calculateVergeSize(a, c);
-            bcVerge = vergeCalculator.calculateVergeSize(b, c);
-            saVerge = vergeCalculator.calculateVergeSize(s, a);
-            sbVerge = vergeCalculator.calculateVergeSize(s, b);
-            scVerge = vergeCalculator.calculateVergeSize(s, c);
+            abVerge = vergeCalculator.calculateVergeSize(pointA, pointB);
+            acVerge = vergeCalculator.calculateVergeSize(pointA, pointC);
+            bcVerge = vergeCalculator.calculateVergeSize(pointB, pointC);
+            saVerge = vergeCalculator.calculateVergeSize(pointTop, pointA);
+            sbVerge = vergeCalculator.calculateVergeSize(pointTop, pointB);
+            scVerge = vergeCalculator.calculateVergeSize(pointTop, pointC);
         } catch (FigureException ex) {
             logger.log(Level.INFO, "Tetrahedron creation validator: " +
                     "creation impossible - can't calculate all verges length");
@@ -65,7 +71,7 @@ public class TetrahedronCreationValidator implements FigureCreationValidator {
         verges.add(sbVerge);
         verges.add(scVerge);
         for (Double verge : verges) {
-            if (verge <= 0.0) {
+            if (verge <= NEGATIVE_VERGE_LENGTH) {
                 logger.log(Level.INFO, "Tetrahedron creation validator: creation impossible - wrong verge length");
                 return false;
             }

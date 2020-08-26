@@ -14,7 +14,7 @@ import static java.lang.Math.*;
 
 public class TetrahedronCalculator implements FigureCalculator {
     private static Logger logger = LogManager.getLogger();
-    private TetrahedronTypeValidator tetrahedronTypeValidator = new TetrahedronTypeValidator();
+    private static TetrahedronTypeValidator tetrahedronTypeValidator = new TetrahedronTypeValidator();
 
     @Override
     public double calculateSquare(Figure figure) throws FigureException {
@@ -75,18 +75,18 @@ public class TetrahedronCalculator implements FigureCalculator {
     public boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException {
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
-            AreaPoint a = tetrahedron.getPointA();
-            AreaPoint b = tetrahedron.getPointB();
-            AreaPoint c = tetrahedron.getPointC();
-            if (a.getXCoordinate() == 0 && b.getXCoordinate() == 0 && c.getXCoordinate() == 0) {
+            AreaPoint pointA = tetrahedron.getPointA();
+            AreaPoint pointB = tetrahedron.getPointB();
+            AreaPoint pointC = tetrahedron.getPointC();
+            if (pointA.getXCoordinate() == 0 && pointB.getXCoordinate() == 0 && pointC.getXCoordinate() == 0) {
                 logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on YZ-coordinates plane");
                 return true;
             }
-            if (a.getYCoordinate() == 0 && b.getYCoordinate() == 0 && c.getYCoordinate() == 0) {
+            if (pointA.getYCoordinate() == 0 && pointB.getYCoordinate() == 0 && pointC.getYCoordinate() == 0) {
                 logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on XZ-coordinates plane");
                 return true;
             }
-            if (a.getZCoordinate() == 0 && b.getZCoordinate() == 0 && c.getZCoordinate() == 0) {
+            if (pointA.getZCoordinate() == 0 && pointB.getZCoordinate() == 0 && pointC.getZCoordinate() == 0) {
                 logger.log(Level.INFO, "Is tetrahedrons on coordinates plane: Tetrahedron is on XY-coordinates plane");
                 return true;
             }

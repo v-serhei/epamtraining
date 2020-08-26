@@ -1,21 +1,15 @@
 package com.verbitsky.task1.factory.impl;
 
-import com.verbitsky.task1.entity.Figure;
-import com.verbitsky.task1.entity.Tetrahedron;
-import com.verbitsky.task1.entity.AreaPoint;
+import com.verbitsky.task1.entity.*;
 import com.verbitsky.task1.exception.FigureException;
+import com.verbitsky.task1.factory.CalcResultsCreator;
 import com.verbitsky.task1.factory.FigureCreator;
 import com.verbitsky.task1.parser.DataParser;
-import com.verbitsky.task1.reader.DataReader;
-import com.verbitsky.task1.validator.DataFileValidator;
-import com.verbitsky.task1.validator.impl.DataFileValidatorImpl;
-import com.verbitsky.task1.validator.FigureDataValidator;
-import com.verbitsky.task1.validator.impl.TetrahedronDataValidator;
+import com.verbitsky.task1.reader.impl.DataReader;
 import com.verbitsky.task1.validator.FigureCreationValidator;
+import com.verbitsky.task1.validator.FigureDataValidator;
 import com.verbitsky.task1.validator.impl.TetrahedronCreationValidator;
-import com.verbitsky.task1.entity.FigureCalcResult;
-import com.verbitsky.task1.factory.CalcResultsCreator;
-import com.verbitsky.task1.entity.WareHouseManager;
+import com.verbitsky.task1.validator.impl.TetrahedronDataValidator;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,9 +28,6 @@ public class TetrahedronCreator implements FigureCreator {
     private static FigureDataValidator dataValidator = new TetrahedronDataValidator();
     //parse coordinates from strings
     private static DataParser lineParser = new DataParser();
-    //data file validator
-    private static DataFileValidator fileValidator = new DataFileValidatorImpl();
-    /* Task 2 */
     //figure calculations result creator
     private static CalcResultsCreator resultsCreator = new FigureCalcResultCreator();
 
@@ -72,7 +63,7 @@ public class TetrahedronCreator implements FigureCreator {
         }
         return figures;
     }
-    /* Task 2 methods*/
+
     public void saveFigureToWarehouse (Figure figure) throws FigureException {
         FigureCalcResult result = resultsCreator.createCalcResult(figure);
         WareHouseManager.INSTANCE.addFigureToWarehouse(figure, result);

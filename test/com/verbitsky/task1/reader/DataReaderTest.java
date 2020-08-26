@@ -1,5 +1,7 @@
 package com.verbitsky.task1.reader;
 
+import com.verbitsky.task1.exception.FigureException;
+import com.verbitsky.task1.reader.impl.DataReader;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -35,14 +37,14 @@ public class DataReaderTest {
 
     /* Positive result tests*/
     @Test
-    public void testReadDataFromFilePositive() {
+    public void testReadDataFromFilePositive() throws FigureException {
         List<String> dataList = reader.readDataFromFile(correctFile);
         boolean result = (dataList == null);
         Assert.assertFalse(result);
     }
 
     @Test
-    public void testReadDataFromFileWrongFullDataInFilePositive() {
+    public void testReadDataFromFileWrongFullDataInFilePositive() throws FigureException {
         StringBuilder sb = new StringBuilder();
         sb.append("data");
         sb.append(File.separator);
@@ -55,13 +57,13 @@ public class DataReaderTest {
     }
 
     /* Negative result tests*/
-    @Test(expectedExceptions = RuntimeException.class)
-    public void testReadDataFromFileEmptyFile() {
+    @Test(expectedExceptions = FigureException.class)
+    public void testReadDataFromFileEmptyFile() throws FigureException {
         reader.readDataFromFile(emptyFile);
     }
 
-    @Test(expectedExceptions = RuntimeException.class)
-    public void testReadDataFromFileWrongFilePath() {
+    @Test(expectedExceptions = FigureException.class)
+    public void testReadDataFromFileWrongFilePath() throws FigureException {
         reader.readDataFromFile("WrongFilePath");
     }
 }
