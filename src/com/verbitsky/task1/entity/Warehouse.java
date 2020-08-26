@@ -1,7 +1,5 @@
 package com.verbitsky.task1.entity;
 
-import com.verbitsky.task1.generator.WarehouseIdGenerator;
-
 import java.util.HashMap;
 import java.util.Map;
 
