@@ -1,9 +1,9 @@
 package com.verbitsky.task1.reader;
 
-import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataValidator;
-import com.verbitsky.task1.validator.datafilevalidator.datavalidator.impl.TetrahedronDataValidator;
-import com.verbitsky.task1.validator.datafilevalidator.filevalidator.DataFileValidator;
-import com.verbitsky.task1.validator.datafilevalidator.filevalidator.impl.DataFileValidatorImpl;
+import com.verbitsky.task1.validator.FigureDataValidator;
+import com.verbitsky.task1.validator.impl.TetrahedronDataValidator;
+import com.verbitsky.task1.validator.DataFileValidator;
+import com.verbitsky.task1.validator.impl.DataFileValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

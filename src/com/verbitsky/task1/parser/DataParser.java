@@ -1,7 +1,7 @@
 package com.verbitsky.task1.parser;
 
-import com.verbitsky.task1.entity.point.AreaPoint;
-import com.verbitsky.task1.validator.datafilevalidator.datavalidator.FigureDataValidator;
+import com.verbitsky.task1.entity.AreaPoint;
+import com.verbitsky.task1.validator.FigureDataValidator;
 
 import java.util.ArrayList;
 import java.util.List;
