@@ -3,7 +3,6 @@ package com.verbitsky.task1.entity;
 import com.verbitsky.task1.action.FigureCalculator;
 import com.verbitsky.task1.action.impl.TetrahedronCalculator;
 import com.verbitsky.task1.exception.FigureException;
-import com.verbitsky.task1.observer.FigureObserver;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,9 @@ public enum Warehouse {
     INSTANCE;
     private FigureCalculator calculator = new TetrahedronCalculator();
     private Logger logger = LogManager.getLogger();
-    private FigureObserver observer = figure -> {
+    private Map<Long, FigureCalcResult> storage = new HashMap<>();
+
+    public void updateCalculations (Figure figure) {
         try {
             double square = calculator.calculateSquare(figure);
             double volume = calculator.calculateVolume(figure);
@@ -27,10 +28,7 @@ public enum Warehouse {
         } catch (FigureException e) {
             logger.log(Level.INFO, "Can't calculate figure parameters");
         }
-
-    };
-
-    private Map<Long, FigureCalcResult> storage = new HashMap<>();
+    }
 
     public Map<Long, FigureCalcResult> getStorage() {
         return Collections.unmodifiableMap(storage);
@@ -56,10 +54,6 @@ public enum Warehouse {
         return getStorage().put(key, value);
     }
 
-    public FigureObserver getObserver() {
-        return observer;
-    }
-
     public void clear() {
         storage.clear();
     }
@@ -67,7 +61,6 @@ public enum Warehouse {
     public int getStorageSize() {
         return getStorage().size();
     }
-
 
     @Override
     public String toString() {

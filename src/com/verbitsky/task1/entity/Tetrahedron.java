@@ -4,6 +4,7 @@ import com.verbitsky.task1.action.VergeCalculator;
 import com.verbitsky.task1.action.impl.VergeCalculatorImpl;
 import com.verbitsky.task1.exception.FigureException;
 import com.verbitsky.task1.observer.FigureObserver;
+import com.verbitsky.task1.observer.impl.TetrahedronObserver;
 import com.verbitsky.task1.validator.FigureCreationValidator;
 import com.verbitsky.task1.validator.impl.TetrahedronCreationValidator;
 import org.apache.logging.log4j.Level;
@@ -37,8 +38,8 @@ public class Tetrahedron extends Figure {
         } catch (FigureException e) {
             logger.log(Level.INFO, "Tetrahedron constructor: can't calculate verge size, cause: null AreaPoints");
         }
-        //attach wh observer to observe object changes
-        observer = Warehouse.INSTANCE.getObserver();
+
+        observer = new TetrahedronObserver();
     }
 
     public AreaPoint getPointA() {
@@ -61,6 +62,7 @@ public class Tetrahedron extends Figure {
         return vergeSize;
     }
 
+    //todo Need test this method
     public boolean setPoints(List <AreaPoint> points) {
         FigureCreationValidator validator = new TetrahedronCreationValidator();
         if (validator.validateFigureCreation(points)) {
