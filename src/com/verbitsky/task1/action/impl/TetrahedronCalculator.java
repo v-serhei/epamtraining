@@ -80,7 +80,7 @@ public enum TetrahedronCalculator implements FigureCalculator {
         return result;
     }
 
-    public static boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException {
+    public boolean isFigureOnCoordinatesPlane(Figure figure) throws FigureException {
         if (figure ==null) {
             throw new FigureException("Is tetrahedrons on coordinates plane: method call with null");
         }

@@ -25,7 +25,7 @@ public class TetrahedronCalculatorTest {
         areaPointC = new AreaPoint(-1, 1, -1);
         areaPointTop = new AreaPoint(1, -1, -1);
         tetrahedron = new Tetrahedron(areaPointA, areaPointB, areaPointC, areaPointTop);
-        figureCalculator = new TetrahedronCalculator();
+        figureCalculator = TetrahedronCalculator.INSTANCE;
     }
 
     @AfterClass
@@ -71,6 +71,6 @@ public class TetrahedronCalculatorTest {
         AreaPoint pointC = new AreaPoint(0, 1, -1);
         AreaPoint pointTop = new AreaPoint(2, -1, -1);
         Figure figure = new Tetrahedron(pointA, pointB, pointC, pointTop);
-        AssertJUnit.assertTrue(TetrahedronCalculator.isFigureOnCoordinatesPlane(figure));
+        AssertJUnit.assertTrue(TetrahedronCalculator.INSTANCE.isFigureOnCoordinatesPlane(figure));
     }
 }
