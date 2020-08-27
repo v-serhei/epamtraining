@@ -8,7 +8,19 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
 public class TetrahedronSquareSpecification implements FigureSpecification {
-    private double minSquare = 1.0;
+    private double minSquare;
+
+    public TetrahedronSquareSpecification(double minSquare) {
+        this.minSquare = minSquare;
+    }
+
+    public double getMinSquare() {
+        return minSquare;
+    }
+
+    public void setMinSquare(double minSquare) {
+        this.minSquare = minSquare;
+    }
 
     @Override
     public boolean specify(Figure figure) {
