@@ -12,7 +12,8 @@ import org.apache.logging.log4j.Logger;
 
 import static java.lang.Math.*;
 
-public class TetrahedronCalculator implements FigureCalculator {
+public enum TetrahedronCalculator implements FigureCalculator {
+    INSTANCE;
     private static Logger logger = LogManager.getLogger();
     private static TetrahedronTypeValidator tetrahedronTypeValidator = new TetrahedronTypeValidator();
 
