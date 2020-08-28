@@ -66,8 +66,6 @@ public class TetrahedronCreator implements FigureCreator {
     }
 
     public void saveFigureToWarehouse(Figure figure) throws FigureException {
-        //todo сюда калькулятор который посчитает результаты и передаст в фабрику готовые результаты
-
         double square = TetrahedronCalculator.INSTANCE.calculateSquare(figure);
         double volume = TetrahedronCalculator.INSTANCE.calculateVolume(figure);
         FigureCalcResult result = resultsCreator.createCalcResult(figure, square, volume);

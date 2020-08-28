@@ -62,7 +62,6 @@ public class Tetrahedron extends Figure {
         return vergeSize;
     }
 
-    //todo Need test this method
     public boolean setPoints(List <AreaPoint> points) {
         FigureCreationValidator validator = new TetrahedronCreationValidator();
         if (validator.validateFigureCreation(points)) {
