@@ -7,18 +7,10 @@ import com.verbitsky.task1.specification.FigureSpecification;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
-public class TetrahedronSquareSpecification implements FigureSpecification {
+public class TetrahedronSquareInRangeSpecification implements FigureSpecification {
     private double minSquare;
 
-    public TetrahedronSquareSpecification(double minSquare) {
-        this.minSquare = minSquare;
-    }
-
-    public double getMinSquare() {
-        return minSquare;
-    }
-
-    public void setMinSquare(double minSquare) {
+    public TetrahedronSquareInRangeSpecification(double minSquare) {
         this.minSquare = minSquare;
     }
 
@@ -27,7 +19,7 @@ public class TetrahedronSquareSpecification implements FigureSpecification {
         boolean result = false;
         try {
             double figureSquare = TetrahedronCalculator.INSTANCE.calculateSquare(figure);
-            result = figureSquare >= minSquare;
+            result = figureSquare > minSquare;
         } catch (FigureException e) {
             LogManager.getLogger().log(Level.INFO, "Can't calculate figure square");
         }

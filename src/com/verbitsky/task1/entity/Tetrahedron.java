@@ -23,7 +23,7 @@ public class Tetrahedron extends Figure {
     private AreaPoint pointB;
     private AreaPoint pointC;
     private AreaPoint topPoint;
-    private double vergeSize;
+    private double vergeLength;
     private FigureObserver observer;
 
     public Tetrahedron(AreaPoint pointA, AreaPoint pointB, AreaPoint pointC, AreaPoint topPoint) {
@@ -34,7 +34,7 @@ public class Tetrahedron extends Figure {
         this.topPoint = topPoint;
         VergeCalculator vergeCalculator = new VergeCalculatorImpl();
         try {
-            vergeSize = vergeCalculator.calculateVergeSize(pointA, pointB);
+            vergeLength = vergeCalculator.calculateVergeSize(pointA, pointB);
         } catch (FigureException e) {
             logger.log(Level.INFO, "Tetrahedron constructor: can't calculate verge size, cause: null AreaPoints");
         }
@@ -58,8 +58,8 @@ public class Tetrahedron extends Figure {
         return topPoint;
     }
 
-    public double getVergeSize() {
-        return vergeSize;
+    public double getVergeLength() {
+        return vergeLength;
     }
 
     public boolean setPoints(List <AreaPoint> points) {
@@ -88,7 +88,7 @@ public class Tetrahedron extends Figure {
 
         Tetrahedron that = (Tetrahedron) o;
 
-        if (Double.compare(that.getVergeSize(), getVergeSize()) != 0) return false;
+        if (Double.compare(that.getVergeLength(), getVergeLength()) != 0) return false;
         if (getPointA() != null ? !getPointA().equals(that.getPointA()) : that.getPointA() != null) return false;
         if (getPointB() != null ? !getPointB().equals(that.getPointB()) : that.getPointB() != null) return false;
         if (getPointC() != null ? !getPointC().equals(that.getPointC()) : that.getPointC() != null) return false;
@@ -117,7 +117,7 @@ public class Tetrahedron extends Figure {
         sb.append("Top: ");
         sb.append(topPoint);
         sb.append(") verge size=");
-        sb.append(vergeSize);
+        sb.append(vergeLength);
         return sb.toString();
     }
 

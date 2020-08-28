@@ -25,7 +25,7 @@ public enum TetrahedronCalculator implements FigureCalculator {
         double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
-            double verge = tetrahedron.getVergeSize();
+            double verge = tetrahedron.getVergeLength();
             result = pow(verge, 2) * sqrt(3);
             logger.log(Level.INFO, "Calculate tetrahedron square: result = " + result);
         } else {
@@ -42,7 +42,7 @@ public enum TetrahedronCalculator implements FigureCalculator {
         double result = 0.0;
         if (tetrahedronTypeValidator.isObjectFigure(figure)) {
             Tetrahedron tetrahedron = (Tetrahedron) figure;
-            result = (pow(tetrahedron.getVergeSize(), 3) * sqrt(2)) / 12;
+            result = (pow(tetrahedron.getVergeLength(), 3) * sqrt(2)) / 12;
             logger.log(Level.INFO, "Calculate tetrahedron volume: result = " + result);
         } else {
             logger.log(Level.INFO, "Calculate tetrahedron volume: received object is not an instance of Tetrahedron");
