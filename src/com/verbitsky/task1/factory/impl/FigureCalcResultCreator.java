@@ -15,6 +15,7 @@ public class FigureCalcResultCreator implements CalcResultsCreator {
     private static FigureCalculator figureCalculator = TetrahedronCalculator.INSTANCE;
     private static Logger logger = LogManager.getLogger();
 
+    //todo переделать
     @Override
     public FigureCalcResult createCalcResult(Figure figure) throws FigureException {
         if (figure == null) {
