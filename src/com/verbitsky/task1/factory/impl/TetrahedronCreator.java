@@ -1,5 +1,6 @@
 package com.verbitsky.task1.factory.impl;
 
+import com.verbitsky.task1.action.impl.TetrahedronCalculator;
 import com.verbitsky.task1.entity.*;
 import com.verbitsky.task1.exception.FigureException;
 import com.verbitsky.task1.factory.CalcResultsCreator;
@@ -64,9 +65,12 @@ public class TetrahedronCreator implements FigureCreator {
         return figures;
     }
 
-    public void saveFigureToWarehouse (Figure figure) throws FigureException {
+    public void saveFigureToWarehouse(Figure figure) throws FigureException {
         //todo сюда калькулятор который посчитает результаты и передаст в фабрику готовые результаты
-        FigureCalcResult result = resultsCreator.createCalcResult(figure);
+
+        double square = TetrahedronCalculator.INSTANCE.calculateSquare(figure);
+        double volume = TetrahedronCalculator.INSTANCE.calculateVolume(figure);
+        FigureCalcResult result = resultsCreator.createCalcResult(figure, square, volume);
         Warehouse.INSTANCE.putIfAbsent(figure.getFigureId(), result);
     }
 }

@@ -44,13 +44,13 @@ public class FigureCalcResultCreatorTest {
 
     @Test
     public void testCreateCalcResultPositive() throws FigureException {
-        FigureCalcResult calcResult = resultsCreator.createCalcResult(figure);
+        FigureCalcResult calcResult = resultsCreator.createCalcResult(figure, 1,1);
         Assert.assertNotNull(calcResult);
     }
 
     @Test (expectedExceptions = FigureException.class)
     public void testCreateCalcResultWithNullArgs() throws FigureException {
-        resultsCreator.createCalcResult(null);
+        resultsCreator.createCalcResult(null , 0, 0);
         fail("Test fail: expected FigureException");
     }
 }
