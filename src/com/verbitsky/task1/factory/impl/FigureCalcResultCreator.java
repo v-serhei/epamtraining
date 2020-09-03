@@ -13,7 +13,7 @@ public class FigureCalcResultCreator implements CalcResultsCreator {
         if (figure == null) {
             throw new FigureException("Received null argument Figure");
         }
-        if (figureSquare <=0 || figureVolume <=0) {
+        if (figureSquare <= 0 || figureVolume <= 0) {
             throw new FigureException("Received wrong value of square or volume");
         }
         FigureCalcResult calcResult = new TetrahedronCalcResult(figure, figureSquare, figureVolume);

@@ -18,14 +18,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DataReader implements FileDataReader {
-    private static DataFileValidator fileValidator = new DataFileValidatorImpl ();
+    private static DataFileValidator fileValidator = new DataFileValidatorImpl();
     private static Logger logger = LogManager.getLogger();
 
     @Override
-    public List<String> readDataFromFile(String filePath) throws FigureException{
+    public List<String> readDataFromFile(String filePath) throws FigureException {
         if (!fileValidator.validateDataFilePath(filePath)) {
             logger.log(Level.ERROR, "DataReader: wrong data file path, shutdown program");
-            throw new FigureException ("DataReader: wrong data file path");
+            throw new FigureException("DataReader: wrong data file path");
         }
         if (fileValidator.validateEmptyDataFile(filePath)) {
             logger.log(Level.ERROR, "DataReader: wrong data file - empty file, shutdown program");
