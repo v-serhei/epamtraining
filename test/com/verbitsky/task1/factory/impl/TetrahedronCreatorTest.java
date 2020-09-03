@@ -62,7 +62,7 @@ public class TetrahedronCreatorTest {
     @Test
     public void testCreateFiguresFromFile() throws FigureException {
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         pathBuilder.append(File.separator);

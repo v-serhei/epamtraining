@@ -1,7 +1,6 @@
 package com.verbitsky.task1.validator.impl;
 
 import com.verbitsky.task1.validator.DataFileValidator;
-import com.verbitsky.task1.validator.impl.DataFileValidatorImpl;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,7 +25,7 @@ public class DataFileValidatorImplTest {
     @Test
     public void testValidateDataFilePathPositive() {
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         pathBuilder.append(File.separator);
@@ -37,7 +36,7 @@ public class DataFileValidatorImplTest {
     @Test (description = "If file size > 0 - method returns false")
     public void testValidateEmptyDataFilePositive() {
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         pathBuilder.append(File.separator);
@@ -63,7 +62,7 @@ public class DataFileValidatorImplTest {
     @Test (description = "Path points to directory")
     public void testValidateDataFilePathNotAFile() {
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         Assert.assertFalse(validator.validateDataFilePath(pathBuilder.toString()));
@@ -72,7 +71,7 @@ public class DataFileValidatorImplTest {
     @Test
     public void testValidateDataFilePathWithEmptyFile() {
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         pathBuilder.append(File.separator);

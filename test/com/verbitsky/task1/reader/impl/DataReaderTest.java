@@ -18,7 +18,7 @@ public class DataReaderTest {
     public void setUp() {
         reader = new DataReader();
         StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("data");
+        pathBuilder.append("resources");
         pathBuilder.append(File.separator);
         pathBuilder.append("fileforcreation");
         emptyFile = pathBuilder.toString();
@@ -45,7 +45,7 @@ public class DataReaderTest {
     @Test
     public void testReadDataFromFileWrongFullDataInFilePositive() throws FigureException {
         StringBuilder sb = new StringBuilder();
-        sb.append("data");
+        sb.append("resources");
         sb.append(File.separator);
         sb.append("fileforcreation");
         sb.append(File.separator);
