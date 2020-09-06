@@ -24,11 +24,11 @@ public class DataReader implements FileDataReader {
     @Override
     public List<String> readDataFromFile(String filePath) throws FigureException {
         if (!fileValidator.validateDataFilePath(filePath)) {
-            logger.log(Level.ERROR, "DataReader: wrong data file path, shutdown program");
+            logger.log(Level.ERROR, "DataReader: wrong data file path");
             throw new FigureException("DataReader: wrong data file path");
         }
         if (fileValidator.validateEmptyDataFile(filePath)) {
-            logger.log(Level.ERROR, "DataReader: wrong data file - empty file, shutdown program");
+            logger.log(Level.ERROR, "DataReader: wrong data file - empty file");
             throw new FigureException("DataReader: wrong data file - empty file");
         }
         File file = new File(filePath);
@@ -36,7 +36,7 @@ public class DataReader implements FileDataReader {
         try {
             stringsStream = Files.lines(Paths.get(file.getPath()), StandardCharsets.UTF_8);
         } catch (IOException ex) {
-            logger.log(Level.ERROR, "File read error, shutdown program", ex);
+            logger.log(Level.ERROR, "File read error", ex);
             throw new FigureException("File read error", ex);
         }
         List<String> dataList = stringsStream.collect(Collectors.toList());
