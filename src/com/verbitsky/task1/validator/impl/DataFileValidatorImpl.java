@@ -25,7 +25,7 @@ public class DataFileValidatorImpl implements DataFileValidator {
     @Override
     public boolean validateDataFilePath(String path) {
         boolean result = false;
-        if (!isEmptyOrNull(path)) {
+        if (!isEmptyOrNullPath(path)) {
             File file = new File(path);
             if (file.exists()) {
                 if (!file.isDirectory()) {
@@ -41,7 +41,7 @@ public class DataFileValidatorImpl implements DataFileValidator {
     }
 
     //returns true if path null or empty
-    private boolean isEmptyOrNull(String path) {
+    private boolean isEmptyOrNullPath(String path) {
         if (path != null || !path.isEmpty()) {
             return false;
         }
