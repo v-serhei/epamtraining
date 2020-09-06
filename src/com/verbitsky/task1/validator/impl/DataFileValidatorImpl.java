@@ -31,10 +31,10 @@ public class DataFileValidatorImpl implements DataFileValidator {
                 if (!file.isDirectory()) {
                     result = true;
                 } else {
-                    logger.log(Level.INFO, "Data file validator: Not a file: "+ path);
+                    logger.log(Level.WARN, "Data file validator: Not a file: "+ path);
                 }
             }else {
-                logger.log(Level.INFO, "Data file validator: Wrong file path: " + path);
+                logger.log(Level.WARN, "Data file validator: Wrong file path: " + path);
             }
         }
         return result;
